@@ -6,6 +6,7 @@
 import json
 import re
 import time
+import uuid
 from datetime import datetime
 
 import pandas as pd
@@ -22,8 +23,9 @@ API_URL = "http://localhost:8000/chat"
 # >>> MOCK_MODE <<<
 #   True  -> does NOT call the backend; returns built-in sample answers.
 #   False -> sends a real POST request to API_URL.
-MOCK_MODE = True
+MOCK_MODE = False
 
+UPLOAD_TIMEOUT_SECONDS = 120         # Ingesting a file (chunk + embed) can be slow
 REQUEST_TIMEOUT_SECONDS = 30        # How long to wait for the backend
 MOCK_DELAY_SECONDS = 0.4            # Fake delay in mock mode (looks realistic)
 SEND_HISTORY_TO_BACKEND = False     # True -> also send {"history": [...]} in the request
@@ -160,13 +162,16 @@ def mock_backend_response(question: str) -> dict:
 # =============================================================================
 # SECTION 4: BACKEND API INTEGRATION
 # =============================================================================
-def call_real_backend(question: str, history: list | None = None) -> dict:
+def call_real_backend(question: str, history: list | None = None, session_id: str | None = None) -> dict:
     """
-    Sends POST {API_URL} with JSON {"question": "..."} and returns the parsed JSON.
-    Expected response: {"answer": "...", "sources": ["file.pdf, page 5"]}
+    Sends POST {API_URL} with JSON {"question": "...", "session_id": "..."} and returns the
+    parsed JSON. Expected response: {"answer": "...", "sources": ["file.pdf, page 5"]}
     (An optional "contexts": ["retrieved text", ...] improves groundedness scoring.)
+
+    session_id lets the backend keep conversation history and uploaded-file access private to
+    this browser session -- required so the chatbot's RAG-over-uploads feature works safely.
     """
-    payload = {"question": question}
+    payload = {"question": question, "session_id": session_id}
     if SEND_HISTORY_TO_BACKEND and history:
         payload["history"] = history
 
@@ -178,6 +183,40 @@ def call_real_backend(question: str, history: list | None = None) -> dict:
     )
     response.raise_for_status()   # Raises HTTPError for 4xx / 5xx
     return response.json()        # Raises ValueError if body is not valid JSON
+
+
+def end_backend_session(session_id: str) -> None:
+    """Tell the backend to delete this session's history and uploaded files. Never raises."""
+    if MOCK_MODE or not session_id:
+        return
+    try:
+        base = API_URL.rsplit("/chat", 1)[0]
+        requests.post(f"{base}/session/{session_id}/end", timeout=5)
+    except Exception:
+        pass
+
+
+def upload_to_backend(uploaded_file, session_id: str) -> tuple:
+    """POST a file to the backend's /upload. Returns (ok, message). Never raises."""
+    try:
+        base = API_URL.rsplit("/chat", 1)[0]
+        response = requests.post(
+            f"{base}/upload",
+            data={"session_id": session_id},
+            files={"file": (uploaded_file.name, uploaded_file.getvalue(),
+                            uploaded_file.type or "application/octet-stream")},
+            timeout=UPLOAD_TIMEOUT_SECONDS,
+        )
+        if response.status_code == 400:
+            return False, response.json().get("detail", "The backend rejected this file.")
+        response.raise_for_status()
+        return True, response.json().get("filename", uploaded_file.name)
+    except requests.exceptions.Timeout:
+        return False, f"Upload timed out after {UPLOAD_TIMEOUT_SECONDS} seconds."
+    except requests.exceptions.ConnectionError:
+        return False, f"Could not connect to the backend at {API_URL}."
+    except Exception as exc:
+        return False, f"Upload failed: {exc}"
 
 
 def to_source_list(raw) -> list:
@@ -246,7 +285,7 @@ def is_no_answer(answer: str) -> bool:
     return any(phrase in lowered for phrase in NO_ANSWER_PHRASES)
 
 
-def ask_backend(question: str, history: list | None = None) -> dict:
+def ask_backend(question: str, history: list | None = None, session_id: str | None = None) -> dict:
     """
     THE function the whole app uses to talk to the chatbot backend.
     It never raises: all problems are returned in result["error"].
@@ -259,7 +298,7 @@ def ask_backend(question: str, history: list | None = None) -> dict:
     start = time.perf_counter()
 
     try:
-        raw = mock_backend_response(question) if MOCK_MODE else call_real_backend(question, history)
+        raw = mock_backend_response(question) if MOCK_MODE else call_real_backend(question, history, session_id)
         result.update(parse_backend_response(raw))
     except requests.exceptions.Timeout:
         result["error"] = (f"The backend did not respond within {REQUEST_TIMEOUT_SECONDS} seconds. "
@@ -368,7 +407,7 @@ def run_evaluation(test_cases: list, progress_bar=None) -> list:
     """Sends every test question to the backend and scores each response."""
     rows = []
     for i, case in enumerate(test_cases, start=1):
-        result = ask_backend(case["question"])
+        result = ask_backend(case["question"], session_id=f"eval-{uuid.uuid4()}")  # fresh session per test: no shared history
         ratio = keyword_match_ratio(result["answer"], case["expected_keywords"])
         groundedness, grounded_label = None, None
 
@@ -504,7 +543,7 @@ def render_chat_page():
     if prompt:
         with st.chat_message("assistant"):
             with st.spinner("Thinking..."):
-                result = ask_backend(prompt, history_before)
+                result = ask_backend(prompt, history_before, st.session_state.session_id)
 
             assistant_msg = {
                 "role": "assistant",
@@ -628,7 +667,35 @@ def render_sidebar() -> str:
         if times:
             st.write(f"Avg response time: **{sum(times) / len(times):.2f}s**")
 
+        st.divider()
+        st.subheader("Your documents")
+        if MOCK_MODE:
+            st.caption("Uploads are disabled in mock mode. Set MOCK_MODE = False to use them.")
+        else:
+            st.caption("Files are private to this session and deleted when you clear the conversation.")
+            files = st.file_uploader("Upload a document to ask about",
+                                     accept_multiple_files=True,
+                                     key=f"uploader_{st.session_state.uploader_key}")
+            for f in files or []:
+                file_id = f"{f.name}:{f.size}"
+                if file_id in st.session_state.uploaded_ids:
+                    continue                               # already sent (Streamlit reruns often)
+                with st.spinner(f"Processing {f.name}..."):
+                    ok, message = upload_to_backend(f, st.session_state.session_id)
+                if ok:
+                    st.session_state.uploaded_ids.add(file_id)
+                    st.session_state.uploaded_docs.append(message)
+                else:
+                    st.error(f"{f.name}: {message}")
+            for name in st.session_state.uploaded_docs:
+                st.markdown(f"✅ {name}")
+
         if st.button("🗑 Clear conversation"):
+            end_backend_session(st.session_state.session_id)       # wipes server history + uploads
+            st.session_state.session_id = str(uuid.uuid4())
+            st.session_state.uploaded_docs = []
+            st.session_state.uploaded_ids = set()
+            st.session_state.uploader_key += 1             # forces the uploader widget to empty
             st.session_state.messages = []
             st.rerun()
 
@@ -658,6 +725,14 @@ def main():
     )
 
     # Session state = memory that survives between button clicks.
+    if "uploaded_docs" not in st.session_state:
+        st.session_state.uploaded_docs = []                # filenames the backend accepted
+    if "uploaded_ids" not in st.session_state:
+        st.session_state.uploaded_ids = set()              # name:size keys, to avoid re-uploading
+    if "uploader_key" not in st.session_state:
+        st.session_state.uploader_key = 0
+    if "session_id" not in st.session_state:
+        st.session_state.session_id = str(uuid.uuid4())     # one id per browser tab, for the backend
     if "messages" not in st.session_state:
         st.session_state.messages = []
     if "eval_rows" not in st.session_state:

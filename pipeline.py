@@ -74,14 +74,19 @@ class Chatbot:
 # Factory: wires the REAL Part 1 + Part 2 into the chatbot
 # --------------------------------------------------------------------------- #
 def build_chatbot(provider: str = "anthropic", chat_fn: Optional[ChatFn] = None,
-                  web_search_fn: Optional[WebSearchFn] = None, verify: bool = False) -> Chatbot:
+                  web_search_fn: Optional[WebSearchFn] = None, verify: bool = False,
+                  rerank: bool = False) -> Chatbot:
     """Part 5 (API/UI) should create the bot with this, once at startup."""
     from hybrid_retriever import HybridRetriever      # Part 2
     from kb_store import embed_fn, get_store          # Part 1 (shared embedding model)
     if chat_fn is None:
         from response_generator import anthropic_chat_fn, openai_chat_fn
         chat_fn = anthropic_chat_fn() if provider == "anthropic" else openai_chat_fn()
-    return Chatbot(chat_fn, HybridRetriever(get_store()), web_search_fn=web_search_fn,
+    retriever = HybridRetriever(get_store())
+    if rerank:                                         # optional cross-encoder step (reranker.py)
+        from reranker import RerankingRetriever, sentence_transformers_cross_encoder
+        retriever = RerankingRetriever(retriever, rerank_fn=sentence_transformers_cross_encoder())
+    return Chatbot(chat_fn, retriever, web_search_fn=web_search_fn,
                    embed_fn=embed_fn, verify=verify)
 
 
