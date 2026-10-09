@@ -19,14 +19,15 @@ import streamlit as st
 
 # >>> PUT YOUR TEAM'S BACKEND URL HERE <<<
 API_URL = "http://localhost:8000/chat"
+UPLOAD_URL = API_URL.rsplit("/", 1)[0] + "/upload"              # .../chat -> .../upload
+CLEAR_DOCS_URL_TMPL = API_URL.rsplit("/", 1)[0] + "/session/{sid}/docs/clear"
 
 # >>> MOCK_MODE <<<
 #   True  -> does NOT call the backend; returns built-in sample answers.
 #   False -> sends a real POST request to API_URL.
 MOCK_MODE = False
 
-UPLOAD_TIMEOUT_SECONDS = 120         # Ingesting a file (chunk + embed) can be slow
-REQUEST_TIMEOUT_SECONDS = 30        # How long to wait for the backend
+REQUEST_TIMEOUT_SECONDS = 120       # How long to wait for the backend
 MOCK_DELAY_SECONDS = 0.4            # Fake delay in mock mode (looks realistic)
 SEND_HISTORY_TO_BACKEND = False     # True -> also send {"history": [...]} in the request
 
@@ -185,38 +186,37 @@ def call_real_backend(question: str, history: list | None = None, session_id: st
     return response.json()        # Raises ValueError if body is not valid JSON
 
 
-def end_backend_session(session_id: str) -> None:
-    """Tell the backend to delete this session's history and uploaded files. Never raises."""
-    if MOCK_MODE or not session_id:
-        return
+def upload_file_to_backend(file, session_id: str) -> dict:
+    """POSTs an uploaded file to the backend. Returns {"ok": True, "filename": ...} or
+    {"ok": False, "error": "..."}. In MOCK_MODE, pretends it worked (no backend call)."""
+    if MOCK_MODE:
+        time.sleep(MOCK_DELAY_SECONDS)
+        return {"ok": True, "filename": file.name}
     try:
-        base = API_URL.rsplit("/chat", 1)[0]
-        requests.post(f"{base}/session/{session_id}/end", timeout=5)
-    except Exception:
-        pass
-
-
-def upload_to_backend(uploaded_file, session_id: str) -> tuple:
-    """POST a file to the backend's /upload. Returns (ok, message). Never raises."""
-    try:
-        base = API_URL.rsplit("/chat", 1)[0]
-        response = requests.post(
-            f"{base}/upload",
+        resp = requests.post(
+            UPLOAD_URL,
             data={"session_id": session_id},
-            files={"file": (uploaded_file.name, uploaded_file.getvalue(),
-                            uploaded_file.type or "application/octet-stream")},
-            timeout=UPLOAD_TIMEOUT_SECONDS,
+            files={"file": (file.name, file.getvalue(), file.type or "application/octet-stream")},
+            timeout=REQUEST_TIMEOUT_SECONDS,
         )
-        if response.status_code == 400:
-            return False, response.json().get("detail", "The backend rejected this file.")
-        response.raise_for_status()
-        return True, response.json().get("filename", uploaded_file.name)
-    except requests.exceptions.Timeout:
-        return False, f"Upload timed out after {UPLOAD_TIMEOUT_SECONDS} seconds."
-    except requests.exceptions.ConnectionError:
-        return False, f"Could not connect to the backend at {API_URL}."
-    except Exception as exc:
-        return False, f"Upload failed: {exc}"
+        resp.raise_for_status()
+        return {"ok": True, "filename": resp.json().get("filename", file.name)}
+    except requests.exceptions.RequestException as exc:
+        return {"ok": False, "error": f"Upload failed: {exc}"}
+    except ValueError as exc:
+        return {"ok": False, "error": f"Backend sent an invalid response: {exc}"}
+
+
+def clear_uploaded_docs(session_id: str) -> bool:
+    """Tells the backend to forget this session's uploaded files. Returns True on success."""
+    if MOCK_MODE:
+        return True
+    try:
+        resp = requests.post(CLEAR_DOCS_URL_TMPL.format(sid=session_id), timeout=REQUEST_TIMEOUT_SECONDS)
+        resp.raise_for_status()
+        return True
+    except requests.exceptions.RequestException:
+        return False
 
 
 def to_source_list(raw) -> list:
@@ -407,7 +407,7 @@ def run_evaluation(test_cases: list, progress_bar=None) -> list:
     """Sends every test question to the backend and scores each response."""
     rows = []
     for i, case in enumerate(test_cases, start=1):
-        result = ask_backend(case["question"], session_id=f"eval-{uuid.uuid4()}")  # fresh session per test: no shared history
+        result = ask_backend(case["question"])
         ratio = keyword_match_ratio(result["answer"], case["expected_keywords"])
         groundedness, grounded_label = None, None
 
@@ -658,6 +658,32 @@ def render_sidebar() -> str:
             st.caption(f"Endpoint: `{API_URL}`")
 
         st.divider()
+        st.subheader("📄 Your documents")
+        st.caption("Uploaded files are private to this session and are searched when you ask "
+                   "about 'my document' / 'my file'.")
+        new_files = st.file_uploader("Upload PDF / DOCX / TXT / MD", type=["pdf", "docx", "txt", "md"],
+                                     accept_multiple_files=True, key="doc_uploader")
+        for f in new_files or []:
+            if f.name in st.session_state.uploaded_docs:
+                continue
+            result = upload_file_to_backend(f, st.session_state.session_id)
+            if result["ok"]:
+                st.session_state.uploaded_docs.append(result["filename"])
+                st.toast(f"Uploaded {result['filename']}")
+            else:
+                st.error(result["error"])
+
+        if st.session_state.uploaded_docs:
+            for name in st.session_state.uploaded_docs:
+                st.caption(f"✅ {name}")
+            if st.button("🗑 Remove my documents"):
+                if clear_uploaded_docs(st.session_state.session_id):
+                    st.session_state.uploaded_docs = []
+                    st.rerun()
+                else:
+                    st.error("Could not clear documents on the backend.")
+
+        st.divider()
         st.subheader("Session")
         messages = st.session_state.messages
         questions = sum(1 for m in messages if m["role"] == "user")
@@ -667,35 +693,7 @@ def render_sidebar() -> str:
         if times:
             st.write(f"Avg response time: **{sum(times) / len(times):.2f}s**")
 
-        st.divider()
-        st.subheader("Your documents")
-        if MOCK_MODE:
-            st.caption("Uploads are disabled in mock mode. Set MOCK_MODE = False to use them.")
-        else:
-            st.caption("Files are private to this session and deleted when you clear the conversation.")
-            files = st.file_uploader("Upload a document to ask about",
-                                     accept_multiple_files=True,
-                                     key=f"uploader_{st.session_state.uploader_key}")
-            for f in files or []:
-                file_id = f"{f.name}:{f.size}"
-                if file_id in st.session_state.uploaded_ids:
-                    continue                               # already sent (Streamlit reruns often)
-                with st.spinner(f"Processing {f.name}..."):
-                    ok, message = upload_to_backend(f, st.session_state.session_id)
-                if ok:
-                    st.session_state.uploaded_ids.add(file_id)
-                    st.session_state.uploaded_docs.append(message)
-                else:
-                    st.error(f"{f.name}: {message}")
-            for name in st.session_state.uploaded_docs:
-                st.markdown(f"✅ {name}")
-
         if st.button("🗑 Clear conversation"):
-            end_backend_session(st.session_state.session_id)       # wipes server history + uploads
-            st.session_state.session_id = str(uuid.uuid4())
-            st.session_state.uploaded_docs = []
-            st.session_state.uploaded_ids = set()
-            st.session_state.uploader_key += 1             # forces the uploader widget to empty
             st.session_state.messages = []
             st.rerun()
 
@@ -725,14 +723,10 @@ def main():
     )
 
     # Session state = memory that survives between button clicks.
-    if "uploaded_docs" not in st.session_state:
-        st.session_state.uploaded_docs = []                # filenames the backend accepted
-    if "uploaded_ids" not in st.session_state:
-        st.session_state.uploaded_ids = set()              # name:size keys, to avoid re-uploading
-    if "uploader_key" not in st.session_state:
-        st.session_state.uploader_key = 0
     if "session_id" not in st.session_state:
         st.session_state.session_id = str(uuid.uuid4())     # one id per browser tab, for the backend
+    if "uploaded_docs" not in st.session_state:
+        st.session_state.uploaded_docs = []                 # filenames uploaded this session
     if "messages" not in st.session_state:
         st.session_state.messages = []
     if "eval_rows" not in st.session_state:

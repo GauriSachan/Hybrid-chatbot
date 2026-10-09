@@ -24,11 +24,8 @@ import os
 import shutil
 import tempfile
 import threading
-from contextlib import asynccontextmanager
 from pathlib import Path
 from typing import Optional
-
-from importlib.util import find_spec
 
 from fastapi import FastAPI, File, Form, HTTPException, UploadFile
 from pydantic import BaseModel
@@ -36,23 +33,16 @@ from pydantic import BaseModel
 from ingestion import delete_session_docs, ingest_user_doc
 from pipeline import Session, build_chatbot
 
-@asynccontextmanager
-async def lifespan(_app):
-    # Load models at startup so the first /chat call isn't slower than app.py's 30 s timeout.
-    if os.getenv("WARMUP", "1") == "1":
-        try:
-            get_bot()
-        except RuntimeError:
-            # Keep startup alive; the user can install the missing provider dependency later.
-            pass
-    yield
-
-
-app = FastAPI(title="RAG Chatbot Backend", lifespan=lifespan)
+app = FastAPI(title="RAG Chatbot Backend")
 
 _lock = threading.Lock()
 _sessions: dict[str, Session] = {}
-_bot = None   # built lazily, once, on first request (model loading is slow)
+_bot = None 
+
+# Which LLM provider to use: set with  export CHATBOT_PROVIDER=gemini  (default: anthropic).
+# Free, no credit card: "gemini" (GEMINI_API_KEY, from aistudio.google.com/apikey) or
+# "groq" (GROQ_API_KEY, from console.groq.com). Paid: "anthropic" / "openai".
+PROVIDER = os.getenv("CHATBOT_PROVIDER", "gemini")
 
 
 def get_bot():
@@ -60,15 +50,7 @@ def get_bot():
     if _bot is None:
         with _lock:
             if _bot is None:                      # re-check: another thread may have built it
-                provider = os.getenv("CHAT_PROVIDER", "openai")
-                try:
-                    _bot = build_chatbot(provider=provider, rerank=os.getenv("RERANK", "1") == "1")
-                except ModuleNotFoundError as exc:
-                    raise RuntimeError(
-                        f"The selected provider '{provider}' is not installed. "
-                        f"Install it with: pip install {provider} "
-                        f"or set CHAT_PROVIDER=openai and install openai."
-                    ) from exc
+                _bot = build_chatbot(provider="gemini", rerank=False)
     return _bot
 
 
@@ -97,38 +79,35 @@ def chat(req: ChatRequest):
     if not req.question.strip():
         raise HTTPException(400, "question must not be empty")
     session = get_session(req.session_id or "default")
-    try:
-        resp = get_bot().chat(req.question, session)
-    except RuntimeError as exc:
-        raise HTTPException(503, str(exc)) from exc
+    resp = get_bot().chat(req.question, session)
     sources = [{"source": s["source"], "page": s.get("page"), "url": s.get("url")} for s in resp.sources]
     contexts = [s["snippet"] for s in resp.sources]
     return ChatResponse(answer=resp.answer, sources=sources, contexts=contexts, route=resp.route)
 
 
-if find_spec("multipart") is not None:
-    @app.post("/upload")
-    def upload(session_id: str = Form(...), file: UploadFile = File(...)):
-        suffix = Path(file.filename).suffix
-        with tempfile.NamedTemporaryFile(suffix=suffix, delete=False) as tmp:
-            shutil.copyfileobj(file.file, tmp)
-            tmp_path = tmp.name
-        try:
-            name = ingest_user_doc(tmp_path, session_id, original_name=file.filename)
-        except ValueError as e:
-            raise HTTPException(400, str(e))
-        finally:
-            Path(tmp_path).unlink(missing_ok=True)
-        get_session(session_id).user_docs.append(name)
-        return {"filename": name}
-else:
-    @app.post("/upload")
-    def upload():
-        raise HTTPException(
-            503,
-            "File upload requires the optional dependency 'python-multipart'. "
-            "Install it with: pip install python-multipart",
-        )
+@app.post("/upload")
+def upload(session_id: str = Form(...), file: UploadFile = File(...)):
+    suffix = Path(file.filename).suffix
+    with tempfile.NamedTemporaryFile(suffix=suffix, delete=False) as tmp:
+        shutil.copyfileobj(file.file, tmp)
+        tmp_path = tmp.name
+    try:
+        name = ingest_user_doc(tmp_path, session_id, original_name=file.filename)
+    except ValueError as e:
+        raise HTTPException(400, str(e))
+    finally:
+        Path(tmp_path).unlink(missing_ok=True)
+    get_session(session_id).user_docs.append(name)
+    return {"filename": name}
+
+
+@app.post("/session/{session_id}/docs/clear")
+def clear_docs(session_id: str):
+    """Remove this session's uploaded files WITHOUT ending the chat / clearing history."""
+    n = delete_session_docs(session_id)
+    s = get_session(session_id)
+    s.user_docs.clear()
+    return {"status": "cleared", "chunks_removed": n}
 
 
 @app.post("/session/{session_id}/end")

@@ -75,19 +75,28 @@ class Chatbot:
 # --------------------------------------------------------------------------- #
 def build_chatbot(provider: str = "anthropic", chat_fn: Optional[ChatFn] = None,
                   web_search_fn: Optional[WebSearchFn] = None, verify: bool = False,
-                  rerank: bool = False) -> Chatbot:
-    """Part 5 (API/UI) should create the bot with this, once at startup."""
+                  rerank: bool = True) -> Chatbot:
+    """Part 5 (API/UI) should create the bot with this, once at startup.
+
+    rerank=True (default): wraps retrieval with the cross-encoder reranker (reranker.py).
+    If the model can't be loaded (no internet, package missing, etc.) this prints a warning
+    and falls back to plain hybrid retrieval rather than crashing startup."""
     from hybrid_retriever import HybridRetriever      # Part 2
     from kb_store import embed_fn, get_store          # Part 1 (shared embedding model)
     if chat_fn is None:
-        from response_generator import anthropic_chat_fn, openai_chat_fn
-        chat_fn = anthropic_chat_fn() if provider == "anthropic" else openai_chat_fn()
+        from response_generator import anthropic_chat_fn, openai_chat_fn, groq_chat_fn, gemini_chat_fn
+        chat_fn = {"anthropic": anthropic_chat_fn, "openai": openai_chat_fn,
+                   "groq": groq_chat_fn, "gemini": gemini_chat_fn}[provider]()
+
     retriever = HybridRetriever(get_store())
-    if rerank:                                         # optional cross-encoder step (reranker.py)
-        from reranker import RerankingRetriever, sentence_transformers_cross_encoder
-        retriever = RerankingRetriever(retriever, rerank_fn=sentence_transformers_cross_encoder())
-    return Chatbot(chat_fn, retriever, web_search_fn=web_search_fn,
-                   embed_fn=embed_fn, verify=verify)
+    if rerank:
+        try:
+            from reranker import RerankingRetriever, sentence_transformers_cross_encoder
+            retriever = RerankingRetriever(retriever, rerank_fn=sentence_transformers_cross_encoder())
+        except Exception as e:
+            print(f"[build_chatbot] Reranker unavailable ({e}); using plain hybrid retrieval.")
+
+    return Chatbot(chat_fn, retriever, web_search_fn=web_search_fn, embed_fn=embed_fn, verify=verify)
 
 
 # --------------------------------------------------------------------------- #

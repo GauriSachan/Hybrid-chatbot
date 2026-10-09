@@ -281,13 +281,42 @@ def anthropic_chat_fn(model: str = "claude-sonnet-5-5", max_tokens: int = 1024) 
     return fn
 
 
-def openai_chat_fn(model: str = "gpt-4o-mini", max_tokens: int = 1024) -> ChatFn:
-    """pip install openai ; set OPENAI_API_KEY"""
+def openai_chat_fn(model: str = "gpt-4o-mini", max_tokens: int = 1024,
+                   base_url: Optional[str] = None, api_key_env: str = "OPENAI_API_KEY") -> ChatFn:
+    """pip install openai ; set the env var named by api_key_env.
+    base_url lets this same function talk to any OpenAI-compatible API (e.g. Groq) --
+    see groq_chat_fn below, which is just this with a different base_url."""
+    import os
     from openai import OpenAI
-    client = OpenAI()
+    client = OpenAI(api_key=os.getenv(api_key_env), base_url=base_url)
 
     def fn(messages: list[dict], temperature: float = 0.3) -> str:
         r = client.chat.completions.create(model=model, messages=messages,
                                            temperature=temperature, max_tokens=max_tokens)
         return r.choices[0].message.content
     return fn
+
+
+def groq_chat_fn(model: Optional[str] = None, max_tokens: int = 1024) -> ChatFn:
+    """FREE, no credit card: pip install openai ; create a key at https://console.groq.com
+    and set GROQ_API_KEY. Groq's API is OpenAI-compatible, so this reuses openai_chat_fn with
+    Groq's base URL. Override the model with env var GROQ_MODEL if the default is retired --
+    check https://console.groq.com/docs/models for the current free-tier model list."""
+    import os
+    model = model or os.getenv("GROQ_MODEL", "llama-3.3-70b-versatile")
+    return openai_chat_fn(model=model, max_tokens=max_tokens,
+                          base_url="https://api.groq.com/openai/v1", api_key_env="GROQ_API_KEY")
+
+
+def gemini_chat_fn(model: Optional[str] = None, max_tokens: int = 1024) -> ChatFn:
+    """FREE tier, no credit card (rate-limited): pip install openai ; create a key at
+    https://aistudio.google.com/apikey and set GEMINI_API_KEY. Gemini has an official
+    OpenAI-compatible endpoint (https://ai.google.dev/gemini-api/docs/openai), so this reuses
+    openai_chat_fn with Google's base URL. Override the model with env var GEMINI_MODEL --
+    check https://ai.google.dev/gemini-api/docs/models for current free-tier model names and
+    their daily/per-minute request limits."""
+    import os
+    model = model or os.getenv("GEMINI_MODEL", "gemini-2.5-flash")
+    return openai_chat_fn(model=model, max_tokens=max_tokens,
+                          base_url="https://generativelanguage.googleapis.com/v1beta/openai/",
+                          api_key_env="GEMINI_API_KEY")
