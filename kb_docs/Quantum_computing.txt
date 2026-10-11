@@ -1,0 +1,1245 @@
+A quantum computer is a computer that represents and processes information using quantum states. Quantum computations exploit phenomena such as superposition, interference, and entanglement. Quantum computers have the potential to complete some calculations exponentially faster than classical computers. For example, a large-scale quantum computer could break widely used encryption schemes and aid physicists in performing physical simulations. However, current hardware implementations of quantum computation are largely experimental and suitable for only certain specialized tasks.
+The basic unit of information in quantum computing, the qubit (quantum bit), serves a similar function as the bit in ordinary or "classical" computing. Unlike a classical bit, which can be in one of two states (a binary), a qubit can exist in a linear combination of states known as a quantum superposition. The result of measuring a qubit is one of the two states, given by a probabilistic rule. If a quantum computer manipulates the qubit in a particular way, wave interference effects amplify the probability of the desired measurement result. Quantum algorithm design involves creating procedures that allow a quantum computer to perform this amplification.
+Quantum computers are not yet practical for real-world applications. If a physical qubit is not sufficiently isolated from its environment, it suffers from quantum decoherence, introducing noise (error) into calculations. Governments have invested in research aimed at developing qubits with longer coherence times and lower error rates. Example implementations include superconductors (which isolate an electrical current by eliminating electrical resistance) and ion traps (which confine a single atomic particle using electromagnetic fields). Researchers have claimed that quantum devices can outperform classical computers on specific tasks, a metric referred to as quantum advantage or quantum supremacy. Such tasks are not necessarily useful for real-world applications. As a result, as of 2026 demonstrations are best understood as scientific milestones rather than evidence for near-term deployment. Global government investment in quantum computing reached $10 billion by April 2025.
+
+Quantum mechanics and computer science formed distinct academic communities until the advent of quantum computing. Quantum theory was developed in the 1920s to explain perplexing physical phenomena. Computers emerged decades later.
+As physicists applied quantum mechanical models to computational problems and swapped bits for qubits, quantum mechanics and computer science began to converge. In 1980, Paul Benioff introduced the quantum Turing machine, which used quantum theory to describe a simplified computer. As digital computers became faster, physicists faced an exponential increase in overhead when simulating quantum dynamics, prompting Yuri Manin and Richard Feynman to independently suggest that hardware based on quantum phenomena might be more efficient for computer simulation. In a 1984 paper, Charles Bennett and Gilles Brassard applied quantum theory to cryptography protocols and demonstrated that quantum key distribution could enhance information security.
+Quantum algorithms then emerged for solving oracle problems, such as Deutsch's algorithm in 1985, the Bernstein–Vazirani algorithm in 1993, and Simon's algorithm in 1994. These algorithms did not solve practical problems, but demonstrated mathematically that more information could be obtained by querying a black box with a quantum state in superposition, sometimes referred to as quantum parallelism.
+
+Peter Shor built on these results in 1994 with polynomial-time quantum algorithms for integer factorization and the discrete logarithm problem. A sufficiently large quantum computer could therefore break widely used public-key cryptography systems: efficient factorization would compromise RSA, while an efficient discrete-logarithm algorithm would compromise Diffie–Hellman key exchange. The cryptographic implications of Shor's algorithm drew attention to quantum computing. In 1996, Grover's algorithm established a quantum speedup for the unstructured search problem. The same year, Seth Lloyd proved that quantum computers could simulate quantum systems without the exponential overhead required by classical simulations, validating Feynman's 1982 conjecture.
+Experimentalists constructed small-scale quantum computers using trapped ions and superconductors. In 1998, a two-qubit quantum computer demonstrated technical feasibility. Subsequent experiments increased the number of qubits and reduced error rates.
+In 2019, Google AI and NASA announced that they had achieved quantum supremacy with a 54-qubit machine, performing a computation that classical supercomputers would take an estimated 10,000 years to complete—a claim subsequently disputed by IBM, which argued the calculation could be done in approximately 2.5 days on its Summit supercomputer with optimized algorithms, sparking a debate over the threshold for this milestone.
+Quantum computing increasingly focused on controlling decoherence through quantum error correction. In 2024, researchers demonstrated approaches for high threshold, low-overhead fault-tolerant quantum memory. These developments represented a critical step toward scaling systems beyond the noisy intermediate-scale quantum (NISQ) era into the fault-tolerant application scale quantum computing (FASQ) era, though large-scale physical implementation remains an engineering challenge.
+
+Computer engineers typically describe a modern computer's operation in terms of classical electrodynamics. In these computers, components, such as semiconductors and random number generators,  may rely on quantum behavior; however, because they are not isolated from their environment, any quantum information eventually quickly decoheres. While programmers may depend on probability theory when designing a randomized algorithm, quantum-mechanical notions such as superposition and wave interference are largely irrelevant in program analysis.
+The "classical" in classical computation thus refers to the computational model, not to whether the microscopic physics of the hardware is ultimately quantum-mechanical. A conventional digital computer can be described by classical states and transition rules: memory stores bits, while logic elements transform one configuration of bits into another. This computational behavior is not tied to electronics, and can be abstracted through the idea of a Turing machine, a mechanical device that performs deterministic transformations on a finite state. In principle, the same classical transition rules can be implemented by some entirely classical mechanical device, possibly with a fixed slow-down in physical time. If a classical computation uses randomness, this can be modeled as access to random classical bits rather than as coherent quantum information. A quantum computer, by contrast, uses coherent quantum states, so that superposition, relative phase, and interference are part of the computation itself, and have no classical counterpart.
+Quantum programs instead rely on precise control of coherent quantum systems. Physicists describe these systems mathematically using linear algebra. Complex numbers model probability amplitudes, vectors model quantum states, and matrices model the operations that can be performed on these states. Programming a quantum computer is then a matter of composing operations in such a way that the resulting program computes a useful result in theory and is implementable in practice.
+Physicist Charlie Bennett noted that since classical computers are composed of quantum atoms, one might study them from the opposite direction:
+
+A classical computer is a quantum computer ... so we shouldn't be asking about "where do quantum speedups come from?" We should say, "Well, all computers are quantum. ... Where do classical slowdowns come from?"
+
+The bit is the basic concept of classical information theory. A bit is in one of two physical states, typically denoted 0 and 1.
+The qubit is the unit of quantum information. A qubit is an abstract mathematical model that applies to any physical system that is represented by that model.  When measured, a qubit takes one of two states  
+  
+    
+      
+        
+          |
+        
+        0
+        ⟩
+      
+    
+    {\displaystyle |0\rangle }
+  
+ or 
+  
+    
+      
+        
+          |
+        
+        1
+        ⟩
+      
+    
+    {\displaystyle |1\rangle }
+  
+. However, the quantum states 
+  
+    
+      
+        
+          |
+        
+        0
+        ⟩
+      
+    
+    {\displaystyle |0\rangle }
+  
+ and 
+  
+    
+      
+        
+          |
+        
+        1
+        ⟩
+      
+    
+    {\displaystyle |1\rangle }
+  
+ belong to a vector space, meaning that they can be multiplied by constants and added together, returning a valid quantum state. Such a combination is known as a superposition of 
+  
+    
+      
+        
+          |
+        
+        0
+        ⟩
+      
+    
+    {\displaystyle |0\rangle }
+  
+ and 
+  
+    
+      
+        
+          |
+        
+        1
+        ⟩
+      
+    
+    {\displaystyle |1\rangle }
+  
+.
+A two-dimensional vector mathematically represents a qubit state. Physicists typically use bra–ket notation for quantum mechanical linear algebra, writing 
+  
+    
+      
+        
+          |
+        
+        ψ
+        ⟩
+      
+    
+    {\displaystyle |\psi \rangle }
+  
+ 'ket psi' for a vector labeled 
+  
+    
+      
+        ψ
+      
+    
+    {\displaystyle \psi }
+  
+. Because a qubit is a two-state system, any qubit state takes the form 
+  
+    
+      
+        α
+        
+          |
+        
+        0
+        ⟩
+        +
+        β
+        
+          |
+        
+        1
+        ⟩
+      
+    
+    {\displaystyle \alpha |0\rangle +\beta |1\rangle }
+  
+, where 
+  
+    
+      
+        
+          |
+        
+        0
+        ⟩
+      
+    
+    {\displaystyle |0\rangle }
+  
+ and 
+  
+    
+      
+        
+          |
+        
+        1
+        ⟩
+      
+    
+    {\displaystyle |1\rangle }
+  
+ are the standard basis states, and 
+  
+    
+      
+        α
+      
+    
+    {\displaystyle \alpha }
+  
+ and 
+  
+    
+      
+        β
+      
+    
+    {\displaystyle \beta }
+  
+ are the probability amplitudes, which are in general complex numbers. If either 
+  
+    
+      
+        α
+      
+    
+    {\displaystyle \alpha }
+  
+ or 
+  
+    
+      
+        β
+      
+    
+    {\displaystyle \beta }
+  
+ is zero, the qubit is effectively a classical bit; when both are nonzero, the qubit is in superposition. Such a quantum state vector behaves similarly to a (classical) probability vector, with one key difference: unlike probabilities, probability amplitudes are not necessarily positive numbers. Negative amplitudes allow for destructive wave interference.
+When a qubit is measured in the standard basis, the result is a classical bit. The Born rule describes the norm-squared correspondence between amplitudes and probabilities—when measuring a qubit 
+  
+    
+      
+        α
+        
+          |
+        
+        0
+        ⟩
+        +
+        β
+        
+          |
+        
+        1
+        ⟩
+      
+    
+    {\displaystyle \alpha |0\rangle +\beta |1\rangle }
+  
+, the state collapses to 
+  
+    
+      
+        
+          |
+        
+        0
+        ⟩
+      
+    
+    {\displaystyle |0\rangle }
+  
+ with probability 
+  
+    
+      
+        
+          |
+        
+        α
+        
+          
+            |
+          
+          
+            2
+          
+        
+      
+    
+    {\displaystyle |\alpha |^{2}}
+  
+, or to 
+  
+    
+      
+        
+          |
+        
+        1
+        ⟩
+      
+    
+    {\displaystyle |1\rangle }
+  
+ with probability 
+  
+    
+      
+        
+          |
+        
+        β
+        
+          
+            |
+          
+          
+            2
+          
+        
+      
+    
+    {\displaystyle |\beta |^{2}}
+  
+.
+Any valid qubit state has coefficients 
+  
+    
+      
+        α
+      
+    
+    {\displaystyle \alpha }
+  
+ and 
+  
+    
+      
+        β
+      
+    
+    {\displaystyle \beta }
+  
+ such that 
+  
+    
+      
+        
+          |
+        
+        α
+        
+          
+            |
+          
+          
+            2
+          
+        
+        +
+        
+          |
+        
+        β
+        
+          
+            |
+          
+          
+            2
+          
+        
+        =
+        1
+      
+    
+    {\displaystyle |\alpha |^{2}+|\beta |^{2}=1}
+  
+. As an example, measuring the qubit 
+  
+    
+      
+        1
+        
+          /
+        
+        
+          
+            2
+          
+        
+        
+          |
+        
+        0
+        ⟩
+        +
+        1
+        
+          /
+        
+        
+          
+            2
+          
+        
+        
+          |
+        
+        1
+        ⟩
+      
+    
+    {\displaystyle 1/{\sqrt {2}}|0\rangle +1/{\sqrt {2}}|1\rangle }
+  
+ would produce either 
+  
+    
+      
+        
+          |
+        
+        0
+        ⟩
+      
+    
+    {\displaystyle |0\rangle }
+  
+ or 
+  
+    
+      
+        
+          |
+        
+        1
+        ⟩
+      
+    
+    {\displaystyle |1\rangle }
+  
+ with equal probability.
+Two particularly important superposition states are the plus state 
+  
+    
+      
+        
+          |
+        
+        +
+        ⟩
+        =
+        1
+        
+          /
+        
+        
+          
+            2
+          
+        
+        
+          |
+        
+        0
+        ⟩
+        +
+        1
+        
+          /
+        
+        
+          
+            2
+          
+        
+        
+          |
+        
+        1
+        ⟩
+      
+    
+    {\displaystyle |+\rangle =1/{\sqrt {2}}|0\rangle +1/{\sqrt {2}}|1\rangle }
+  
+ and the minus state 
+  
+    
+      
+        
+          |
+        
+        −
+        ⟩
+        =
+        1
+        
+          /
+        
+        
+          
+            2
+          
+        
+        
+          |
+        
+        0
+        ⟩
+        −
+        1
+        
+          /
+        
+        
+          
+            2
+          
+        
+        
+          |
+        
+        1
+        ⟩
+      
+    
+    {\displaystyle |-\rangle =1/{\sqrt {2}}|0\rangle -1/{\sqrt {2}}|1\rangle }
+  
+. While both yield outcomes 0 and 1 with equal probability upon standard basis measurement, they behave differently under operations such as the Hadamard gate—which maps 
+  
+    
+      
+        
+          |
+        
+        0
+        ⟩
+        ↔
+        
+          |
+        
+        +
+        ⟩
+      
+    
+    {\displaystyle |0\rangle \leftrightarrow |+\rangle }
+  
+ and 
+  
+    
+      
+        
+          |
+        
+        1
+        ⟩
+        ↔
+        
+          |
+        
+        −
+        ⟩
+      
+    
+    {\displaystyle |1\rangle \leftrightarrow |-\rangle }
+  
+—demonstrating that relative phase differences carry meaningful quantum information.
+Each additional qubit doubles the dimension of the state space. As an example, the vector ⁠1/√2⁠|00⟩ + ⁠1/√2⁠|01⟩ represents a two-qubit state, a tensor product of the qubit |0⟩ with the qubit ⁠1/√2⁠|0⟩ + ⁠1/√2⁠|1⟩. This vector inhabits a four-dimensional vector space spanned by the basis vectors |00⟩, |01⟩, |10⟩, and |11⟩.
+In general, the vector space for an n-qubit system is 2n-dimensional, and this makes it challenging for a classical computer to simulate a quantum one: representing a 100-qubit system requires storing 2100 classical values.
+
+The state of this one-qubit quantum memory can be manipulated by applying quantum logic gates, analogous to how classical memory can be manipulated with classical logic gates. One important gate for both classical and quantum computation is the NOT gate, which can be represented by a matrix
+  
+    
+      
+        X
+        :=
+        
+          
+            (
+            
+              
+                
+                  0
+                
+                
+                  1
+                
+              
+              
+                
+                  1
+                
+                
+                  0
+                
+              
+            
+            )
+          
+        
+        .
+      
+    
+    {\displaystyle X:={\begin{pmatrix}0&1\\1&0\end{pmatrix}}.}
+  
+Mathematically, the application of such a logic gate to a quantum state vector is modeled with matrix multiplication. Thus
+
+  
+    
+      
+        X
+        
+          |
+        
+        0
+        ⟩
+        =
+        
+          |
+        
+        1
+        ⟩
+      
+    
+    {\displaystyle X|0\rangle =|1\rangle }
+  
+ and 
+  
+    
+      
+        X
+        
+          |
+        
+        1
+        ⟩
+        =
+        
+          |
+        
+        0
+        ⟩
+      
+    
+    {\displaystyle X|1\rangle =|0\rangle }
+  
+.
+The mathematics of single-qubit gates can be extended to operate on multi-qubit quantum memories in two important ways. One way is to select a qubit and apply that gate to the target qubit while leaving the remainder of the memory unaffected. Another way is to apply the gate to its target only if another part of the memory is in a desired state. These two choices can be illustrated using another example. The possible states of a two-qubit quantum memory are:
+  
+    
+      
+        
+          |
+        
+        00
+        ⟩
+        :=
+        
+          
+            (
+            
+              
+                
+                  1
+                
+              
+              
+                
+                  0
+                
+              
+              
+                
+                  0
+                
+              
+              
+                
+                  0
+                
+              
+            
+            )
+          
+        
+        ;
+        
+        
+          |
+        
+        01
+        ⟩
+        :=
+        
+          
+            (
+            
+              
+                
+                  0
+                
+              
+              
+                
+                  1
+                
+              
+              
+                
+                  0
+                
+              
+              
+                
+                  0
+                
+              
+            
+            )
+          
+        
+        ;
+        
+        
+          |
+        
+        10
+        ⟩
+        :=
+        
+          
+            (
+            
+              
+                
+                  0
+                
+              
+              
+                
+                  0
+                
+              
+              
+                
+                  1
+                
+              
+              
+                
+                  0
+                
+              
+            
+            )
+          
+        
+        ;
+        
+        
+          |
+        
+        11
+        ⟩
+        :=
+        
+          
+            (
+            
+              
+                
+                  0
+                
+              
+              
+                
+                  0
+                
+              
+              
+                
+                  0
+                
+              
+              
+                
+                  1
+                
+              
+            
+            )
+          
+        
+        .
+      
+    
+    {\displaystyle |00\rangle :={\begin{pmatrix}1\\0\\0\\0\end{pmatrix}};\quad |01\rangle :={\begin{pmatrix}0\\1\\0\\0\end{pmatrix}};\quad |10\rangle :={\begin{pmatrix}0\\0\\1\\0\end{pmatrix}};\quad |11\rangle :={\begin{pmatrix}0\\0\\0\\1\end{pmatrix}}.}
+  
+The controlled NOT (CNOT) gate can then be represented using the following matrix:
+  
+    
+      
+        CNOT
+        :=
+        
+          
+            (
+            
+              
+                
+                  1
+                
+                
+                  0
+                
+                
+                  0
+                
+                
+                  0
+                
+              
+              
+                
+                  0
+                
+                
+                  1
+                
+                
+                  0
+                
+                
+                  0
+                
+              
+              
+                
+                  0
+                
+                
+                  0
+                
+                
+                  0
+                
+                
+                  1
+                
+              
+              
+                
+                  0
+                
+                
+                  0
+                
+                
+                  1
+                
+                
+                  0
+                
+              
+            
+            )
+          
+        
+        .
+      
+    
+    {\displaystyle \operatorname {CNOT} :={\begin{pmatrix}1&0&0&0\\0&1&0&0\\0&0&0&1\\0&0&1&0\end{pmatrix}}.}
+  
+As a mathematical consequence of this definition, 
+  
+    
+      
+        CNOT
+        ⁡
+        
+          |
+        
+        00
+        ⟩
+        =
+        
+          |
+        
+        00
+        ⟩
+      
+    
+    {\textstyle \operatorname {CNOT} |00\rangle =|00\rangle }
+  
+, 
+  
+    
+      
+        CNOT
+        ⁡
+        
+          |
+        
+        01
+        ⟩
+        =
+        
+          |
+        
+        01
+        ⟩
+      
+    
+    {\textstyle \operatorname {CNOT} |01\rangle =|01\rangle }
+  
+, 
+  
+    
+      
+        CNOT
+        ⁡
+        
+          |
+        
+        10
+        ⟩
+        =
+        
+          |
+        
+        11
+        ⟩
+      
+    
+    {\textstyle \operatorname {CNOT} |10\rangle =|11\rangle }
+  
+, and 
+  
+    
+      
+        CNOT
+        ⁡
+        
+          |
+        
+        11
+        ⟩
+        =
+        
+          |
+        
+        10
+        ⟩
+      
+    
+    {\textstyle \operatorname {CNOT} |11\rangle =|10\rangle }
+  
+. In other words, the CNOT applies a NOT gate (
+  
+    
+      
+        X
+      
+    
+    {\textstyle X}
+  
+ from before) to the second qubit if and only if the first qubit is in the state 
+  
+    
+      
+        
+          |
+        
+        1
+        ⟩
+      
+    
+    {\textstyle |1\rangle }
+  
+. If the first qubit is 
+  
+    
+      
+        
+          |
+        
+        0
+        ⟩
+      
+    
+    {\textstyle |0\rangle }
+  
+, nothing is done to either qubit.
+In summary, quantum computation can be described as a network of quantum logic gates and measurements. However, any measurement can be deferred to the end of quantum computation, though this deferment may come at a computational cost, so most quantum circuits depict a network consisting only of quantum logic gates and no measurements.
+
+Quantum parallelism is a heuristic that quantum computers can be thought of as evaluating a function for multiple input values simultaneously. This can be achieved by preparing a quantum system in a superposition of input states and applying a unitary transformation that encodes the function to be evaluated. The resulting state encodes the function's output values for all input values in the superposition, enabling the simultaneous computation of multiple outputs. This property is key to the acceleration of many quantum algorithms. However, parallelism in this sense is insufficient to speed up a computation, because the measurement at the end of the computation gives only one value. To be useful, a quantum algorithm must also incorporate some other conceptual ingredient.
+
+Various models of computation are used for quantum computing, distinguished by the basic elements in which the computation is decomposed.
+
+A quantum gate array decomposes computation into a sequence of few-qubit quantum gates. A quantum computation can be described as a network of quantum logic gates and measurements. Any measurement can be deferred to the end of quantum computation, though this deferment may come at a computational cost, so most quantum circuits depict a network consisting only of quantum logic gates and no measurements.
+Any quantum computation (in the above formalism, any unitary matrix of size 
+  
+    
+      
+        
+          2
+          
+            n
+          
+        
+        ×
+        
+          2
+          
+            n
+          
+        
+      
+    
+    {\displaystyle 2^{n}\times 2^{n}}
+  
+ over 
+  
+    
+      
+        n
+      
+    
+    {\displaystyle n}
+  
+ qubits) can be represented as a network of quantum logic gates from a fairly small family of gates. A choice of gate family that enables this construction is known as a universal gate set, since a computer that can run such circuits is a universal quantum computer. One common such set includes all single-qubit gates as well as the CNOT gate. This means any quantum computation can be performed by executing a sequence of single-qubit gates together with CNOT gates. Though this gate set is infinite, it can be replaced with a finite gate set by appealing to the Solovay-Kitaev theorem. Implementation of Boolean functions using the few-qubit quantum gates is presented here.
+
+A quantum Turing machine is the quantum analog of a Turing machine. All of these models of computation—quantum circuits, one-way quantum computation, adiabatic quantum computation, and topological quantum computation—have been shown to be equivalent to the quantum Turing machine; given a perfect implementation of one such quantum computer, it can simulate all the others with no more than polynomial overhead. This equivalence need not hold for practical quantum computers, since the overhead of simulation may be too large to be practical.
+
+A measurement-based quantum computer decomposes computation into a sequence of Bell state measurements and single-qubit quantum gates applied to a highly entangled initial state (a cluster state), using a technique called quantum gate teleportation.
+An adiabatic quantum computer, based on quantum annealing, decomposes computation into a slow continuous transformation of an initial Hamiltonian into a final Hamiltonian, whose ground states contain the solution.
+A topological quantum computer decomposes computation into the braiding of anyons in a 2D lattice.
+
+The threshold theorem shows how increasing the number of qubits can mitigate errors, yet fully fault-tolerant quantum computing remains out of reach as of 2026. According to some researchers, noisy intermediate-scale quantum (NISQ) machines may have specialized uses in the near future, but noise in quantum gates limits their reliability. Scientists at Harvard created "quantum circuits" that correct errors more efficiently than alternative methods, which may remove a major obstacle to practical quantum computers. The Harvard research team was supported by MIT, QuEra Computing, Caltech, and Princeton and funded by DARPA's Optimization with Noisy Intermediate-Scale Quantum devices (ONISQ) program.
+
+Quantum cryptography enables methods for secure data transmission; for example, quantum key distribution uses entangled quantum states to establish secure cryptographic keys. When a sender and receiver exchange quantum states, they can guarantee that an adversary does not intercept the message, as any eavesdropper would disturb the delicate quantum system and introduce a detectable change. With appropriate cryptographic protocols, the sender and receiver can privately share information resistant to eavesdropping.
+Modern fiber-optic cables can transmit quantum information over relatively short distances. Ongoing experimental research aims to develop more reliable hardware (such as quantum repeaters), hoping to scale this technology to long-distance quantum networks with end-to-end entanglement. Theoretically, this could enable novel technological applications, such as distributed quantum computing and enhanced quantum sensing.
+
+Quantum teleportation is a protocol by which Alice can transmit the quantum state of a qubit to Bob using one shared entangled pair (e-bit) and two classical bits of communication. The state of Alice's qubit is not physically transmitted—instead, it is reconstructed at Bob's end through classically communicated measurement outcomes and local unitary corrections. This demonstrates that quantum communication requires both entanglement and classical communication; neither alone is sufficient. Teleportation cannot be used to transmit information faster than light because the classical bits must travel through normal channels.
+Superdense coding is the complementary protocol: using one shared e-bit and sending only one qubit, Alice can transmit two classical bits to Bob. This appears to violate Holevo's theorem—which states that a single qubit can carry at most one bit of classical information—but the shared entanglement circumvents this limit. Superdense coding thus demonstrates that entanglement can effectively double the classical information-carrying capacity of quantum communication.
+
+Progress in finding quantum algorithms typically focuses on the quantum circuit model, though exceptions such as the quantum adiabatic algorithm exist. Quantum algorithms can be roughly categorized by the type of speedup achieved over corresponding classical algorithms.
+Quantum algorithms that offer more than a polynomial speedup over the best-known classical algorithm include Shor's algorithm for factoring and the related quantum algorithms for computing discrete logarithms, solving Pell's equation, and, more generally, solving the hidden subgroup problem for abelian finite groups. These algorithms depend on the primitive of the quantum Fourier transform. No mathematical proof has been found that shows that an equally fast classical algorithm cannot be discovered, but evidence suggests that this is unlikely. Certain oracle problems like Simon's problem and the Bernstein–Vazirani problem do give provable speedups, though this is in the quantum query model, which is a restricted model where lower bounds are much easier to prove and don't necessarily translate to practical problems.
+Other problems, including the simulation of quantum physical processes from chemistry and solid-state physics, the approximation of certain Jones polynomials, and the quantum algorithm for linear systems of equations, have quantum algorithms appearing to give super-polynomial speedups and are BQP-complete. Because these problems are BQP-complete, an equally fast classical algorithm for them would imply that "no quantum algorithm" provides a super-polynomial speedup, which is unlikely.
+In addition to these problems, quantum algorithms are explored for applications in cryptography, optimization, and machine learning, although most of these remain at the research stage and require significant advances in error correction and hardware scalability for practical implementation.
+Some quantum algorithms, such as Grover's algorithm and amplitude amplification, give polynomial speedups over corresponding classical algorithms. Though these algorithms give comparably modest quadratic speedup, they are widely applicable and thus accelerate a wide range of problems. These improvements are, however, over the theoretical worst-case of classical algorithms, and real-world speed-ups over traditional algorithms have not been demonstrated.
+
+Since chemistry and nanotechnology rely on understanding quantum systems, and such systems are impossible to efficiently simulate classically, quantum simulation may be an important application. Quantum computational chemistry is promising for quantum computing, particularly for problems in electronic structure, chemical dynamics, and spectroscopy; useful implementations remain hardware-limited. Quantum simulation could be used to simulate the behavior of atoms and particles under unusual conditions such as the reactions inside a collider. In June 2023, IBM computer scientists reported that a quantum computer produced better results for a physics problem than a conventional supercomputer.
+About 2% of the annual global energy output is used for nitrogen fixation to produce ammonia for the Haber process in the agricultural fertiliser industry. Quantum simulations might be used to understand this process and increase energy efficiency.
+
+Digital cryptography enables communications to remain private, preventing unauthorized parties from accessing them. Conventional encryption, the obscuring of a message with a key through an algorithm, relies on the algorithm being difficult to reverse. Encryption underlies digital signatures and authentication mechanisms. Quantum computing may be sufficiently more powerful that difficult reversals are feasible, allowing messages relying on conventional encryption to be read.
+Thus quantum computing can in theory be used to attack currently-used cryptographic systems. Integer factorization, which underpins the security of public key cryptographic systems, is believed to be computationally infeasible on a classical computer for large integers that are the product of a few prime numbers (e.g., the product of two 300-digit primes). By contrast, a quantum computer could solve this problem exponentially faster using Shor's algorithm to factor the integer. This would allow a quantum computer to break many widely used cryptographic systems, in the sense that a polynomial time (in the number of digits of the integer) algorithm could do so. In particular, most popular public key ciphers rely on the difficulty of factoring integers or the discrete logarithm. In particular, RSA, Diffie–Hellman, and elliptic curve Diffie–Hellman algorithms could be broken. These are used to secure Web pages, encrypted emails, and many other data. Breaking these would have significant ramifications for electronic privacy and security.
+Identifying cryptographic systems that are secure against quantum algorithms is an actively researched topic under the field of post-quantum cryptography. Some public-key algorithms are based on problems that Shor's algorithm cannot solve, such as the McEliece cryptosystem, which relies on a hard problem in coding theory. Lattice-based cryptosystems are not known to be susceptible to quantum computers, and finding a polynomial time algorithm for solving the dihedral hidden subgroup problem, which would break many lattice-based cryptosystems, is a well-studied open problem. Applying Grover's algorithm to break a symmetric (secret-key) algorithm by brute force requires roughly 2n/2 invocations of the underlying cryptographic algorithm, compared with roughly 2n in the classical case, meaning that symmetric key lengths are effectively halved: AES-256 would have comparable security against such an attack to that of AES-128 against classical brute-force search.
+Post-quantum algorithms are designed to run but be difficult to break on a classical computer. Quantum cryptography replaces conventional encryption algorithms with techniques based on quantum mechanics such as entanglement. In principle, quantum encryption cannot be decoded even by a quantum computer. This advantage comes at a significant infrastructure cost, while effectively preventing legitimate decoding of messages.
+
+The most well-known example of a problem that allows for a polynomial quantum speedup is unstructured search, which involves finding a marked item out of a list of 
+  
+    
+      
+        n
+      
+    
+    {\displaystyle n}
+  
+ items in a database. This can be solved by Grover's algorithm using 
+  
+    
+      
+        O
+        (
+        
+          
+            n
+          
+        
+        )
+      
+    
+    {\displaystyle O({\sqrt {n}})}
+  
+ queries to the database, quadratically fewer than the 
+  
+    
+      
+        Ω
+        (
+        n
+        )
+      
+    
+    {\displaystyle \Omega (n)}
+  
+ queries required for classical algorithms. In this case, the advantage is not only provable but also optimal: it has been shown that Grover's algorithm gives the maximal possible probability of finding the desired element for any number of oracle lookups. Many examples of provable speedups for query problems are based on Grover's algorithm, including Brassard, Høyer, and Tapp's algorithm for finding collisions in two-to-one functions, and Farhi, Goldstone, and Gutmann's algorithm for evaluating NAND trees.
+Problems that can be efficiently addressed with Grover's algorithm have the following properties:
+
+The collection of possible answers has no searchable structure
+The number of possible answers to check is the same as the number of inputs to the algorithm,
+A Boolean function exists that evaluates each input and determines whether it is the correct answer.
+For problems with all these properties, the running time of Grover's algorithm on a quantum computer scales as the square root of the number of inputs (or elements in the database), as opposed to the linear scaling of classical algorithms. A general class of problems to which Grover's algorithm can be applied is a Boolean satisfiability problem, in which the algorithm iterates through all possible answers. An example and possible application of this is a password cracker that attempts to guess a password. Breaking symmetric ciphers with this algorithm is of interest to government agencies.
+
+Quantum annealing uses the adiabatic theorem to perform calculations. A system is placed in the ground state for a simple Hamiltonian, which evolves to a more complicated Hamiltonian whose ground state represents the solution to the problem in question. The adiabatic theorem states that if the evolution is slow enough, the system stays in its ground state throughout the process. Quantum annealing can solve Ising models and the (computationally equivalent) quadratic unconstrained binary optimisation (QUBO) problem, which in turn can be used to encode a wide range of combinatorial optimization problems. Adiabatic optimization may be helpful for solving computational biology problems.
+
+Since quantum computers can produce outputs that classical computers cannot produce efficiently, and since quantum computation is fundamentally linear algebra, quantum algorithms that can speed up machine learning tasks may be possible. However, review literature notes that many proposed quantum machine-learning advantages rely on assumptions about efficient data encoding or continued access to quantum hardware, and have not translated into practical advantage as of 2024. For example, the HHL Algorithm is believed to provide speedup over classical counterparts. Research groups have explored quantum annealing hardware for training Boltzmann machines and deep neural networks.
+Deep generative chemistry models have been explored for potential applications in drug discovery. Near-term quantum hardware has been explored for  molecular generative modeling for drug discovery. In 2023, researchers reported a hybrid quantum–classical generative model based on a restricted Boltzmann machine, implemented on a commercially available quantum annealing device, to generate novel small molecules with physicochemical properties comparable to medicinal compounds. However, the immense size and complexity of the structural space of all possible relevant molecules pose significant obstacles, which could be overcome in the future by quantum computers. Quantum computers are naturally good for solving complex quantum many-body problems and thus may apply to applications involving quantum chemistry. Quantum-enhanced generative models including quantum generative adversarial networks (GANs) may be developed into generative chemistry algorithms.
+
+Artificial intelligence has been explored as a tool for discovering and optimizing quantum algorithms. AlphaEvolve, a Google DeepMind system based on large language models and evolutionary algorithms, has been described as a coding agent for scientific and algorithmic discovery. In quantum-computing research, AlphaEvolve-optimized quantum circuits have been used in work on quantum computation of molecular geometry through many-body nuclear spin echoes.
+
+As of 2023, classical computers outperformed quantum computers for all real-world applications.
+
+Many technical challenges confront the building of a large-scale quantum computer. Physicist David DiVincenzo has listed these requirements for a practical quantum computer:
+
+Physically scalable to increase the number of qubits
+Qubits that can be initialized to arbitrary values
+Quantum gates that are faster than decoherence time
+Universal gate set
+Qubits that are easily read.
+The control of multi-qubit systems requires the rapid generation and coordination of a large number of electrical signals with deterministic timing. This has led to the development of quantum controllers that enable interfacing with the qubits. Scaling these systems to support many qubits is an additional challenge.
+The potential to break public-key encryption has motivated changes in global cybersecurity strategies. The National Institute of Standards and Technology (NIST) initiated detailed standardization processes for post-quantum cryptography. These global efforts are designed to develop, evaluate, and deploy cryptographic algorithms that remain safe against both quantum and classical attacks.
+
+Sourcing parts for quantum computers is difficult. Superconducting quantum computers, such as those constructed by Google and IBM, need helium-3, a nuclear research byproduct, and special superconducting cables made only by one company, Coax Co. On 27 January 2026, DARPA called for proposals for a quantum computing coolant below 1 kelvin, which does not use helium-3. In February 2026, the Chinese Academy of Sciences announced the testing of a rare-earth alloy, EuCo2Al9, which could fill a similar role.
+
+Quantum decoherence must be controlled or eliminated. Error rates are typically proportional to the ratio of operating time to decoherence time; hence, any operation must be completed much more quickly than the decoherence time. This usually means isolating the system from its environment, as external interactions cause decoherence. However, other sources also exist. Examples include the quantum gates, the lattice vibrations, and the background thermonuclear spin of the physical system that implements the qubits. Decoherence is irreversible, as it is effectively non-unitary, and must be controlled or avoided. Decoherence times for candidate systems in particular, the transverse relaxation time T2 (for NMR and MRI technology, also called the dephasing time), typically range between nanoseconds and seconds at low temperatures. Some quantum computers require their qubits to be cooled to 20 millikelvin (usually using a dilution refrigerator) in order to prevent significant decoherence. A 2020 study reported that ionizing radiation such as cosmic rays can cause certain systems to decohere within milliseconds.
+As a result, time-consuming tasks may render some quantum algorithms inoperable, as maintaining the state of qubits over a long period eventually corrupts the superpositions.
+These issues are more difficult for optical approaches as the timescales are orders of magnitude shorter. An often-cited approach to overcoming them is optical pulse shaping.
+As described by the threshold theorem, if the error rate is small enough, it is thought to be possible to use quantum error correction to suppress errors and decoherence. This allows the total calculation time to be longer than the decoherence time if the error correction scheme can correct errors faster than decoherence introduces them. An often-cited figure for the required error rate in each gate for fault-tolerant computation is 10−3, assuming the noise is depolarizing.
+Meeting this scalability condition is possible for a wide range of systems. However, error correction requires far more qubits. The number required to factor integers using Shor's algorithm is still polynomial, and thought to be between L and L2, where L is the number of binary digits in the number to be factored; error correction algorithms would inflate this figure by an additional factor of L. For a 1000-bit number, this implies a need for about 104 bits without error correction. With error correction, the figure would rise to about 107 bits. Computation time is about L2 or about 107 steps and at 1 MHz, about 10 seconds. However, the encoding and error-correction overheads increase the size of a real fault-tolerant quantum computer by orders of magnitude. Estimates show that at least 3 million physical qubits would factor a 2,048-bit integer in 5 months on a fully error-corrected trapped-ion quantum computer. In terms of the number of physical qubits, to date, this remains the lowest estimate for practically useful integer factorization problem sizing 1,024-bit or larger.
+One approach to overcoming errors combines low-density parity-check code with cat qubits that have intrinsic bit-flip error suppression. Implementing 100 logical qubits with 768 cat qubits could reduce the error rate to one part in 108 per cycle per bit.
+Another approach to the stability-decoherence problem is to create a topological quantum computer with anyons, quasi-particles used as threads, and relying on braid theory to form stable logic gates. Non-Abelian anyons can, in effect, remember how they have been manipulated, making them potentially useful in quantum computing. As of 2025, Microsoft and other organizations were investing in quasi-particle research.
+
+One approach to the scalability problem is to distribute a computation across multiple smaller quantum processing modules instead of increasing the number of qubits in a single device. In such modular architectures — also referred to as distributed quantum computing (DQC) —
+each module contains a limited number of qubits, and the modules are interconnected through quantum channels (for example, optical fibres) and classical communication links, forming a single logical computing system.
+In one strategy, the quantum logic between qubits in different modules is applied using quantum gate teleportation, using remote entanglement between the modules, but local operations and measurements within each module, and classical communication of measurement outcomes. Quantum algorithms distributed across a photonic network link between trapped-ion modules, as well as teleported two-qubit gates between remote solid-state qubit registers based on nitrogen-vacancy centers in diamond, were demonstrated in 2025.
+High rate and high fidelity remote entanglement generation across the network is the core challenge in distributed protocols. Quantum sensing may became integral to a distributed quantum computer.
+
+John Preskill coined the term quantum supremacy to describe the engineering feat of demonstrating that a programmable quantum device can solve a problem beyond the capabilities of classical computers. The problem need not be useful, so quantum supremacy test may be just a future benchmark.
+In October 2019, Google Quantum AI, with the help of NASA, became the first to claim to have achieved quantum supremacy by performing calculations on the Sycamore quantum computer more than 3,000,000 times faster than they could be done on Summit, then generally considered the world's fastest computer. This claim was challenged: IBM stated that Summit can perform samples much faster than claimed. Researchers later developed better quantum algorithms for the sampling problem, possibly beating Summit.
+In December 2020, a group at USTC implemented a type of boson sampling on 76 photons with a photonic quantum computer, Jiuzhang, seeking quantum supremacy. The authors claimed that a classical computer would require 600 million years to generate the number of samples their quantum processor generated in 20 seconds.
+Hyped claims of quantum supremacy, were based on tasks that do not directly imply real-world applications.
+A January 2024 study reported verification of quantum supremacy experiments by computing exact amplitudes for experimentally generated bitstrings using a Sunway supercomputer, demonstrating a significant leap in simulation capability built on a multiple-amplitude tensor network contraction algorithm.
+
+Despite high hopes for quantum computing, significant progress in hardware, and optimism about future applications, a 2023 article summarized current quantum computers as "For now, [good for] absolutely nothing".  The article claimed that quantum computers are yet of no practical use although they are likely to be useful, someday. A 2023 article stated that quantum computing algorithms are "insufficient for practical quantum advantage without significant improvements across the software/hardware stack". It foretold that the most promising candidates for achieving speedup with quantum computers are "small-data problems", for example, in chemistry and materials science. It concluded that many application domains, such as machine learning, "will not achieve quantum advantage with current quantum algorithms in the foreseeable future", and it identified I/O constraints that make speedup unlikely for "big data problems, unstructured linear systems, and database search based on Grover's algorithm".
+This state of affairs can be traced to several current and long-term considerations.
+
+Conventional computer hardware and algorithms are optimized for practical tasks and are still improving rapidly.
+Quantum computing hardware is overwhelmed by noise before completing any useful tasks.
+Quantum algorithms provide speedup only for some tasks, and matching these tasks with practical applications is challenging. Some of these require resources far beyond those available. In particular, processing large amounts of data is a challenge.
+Some promising algorithms have been "dequantized", i.e., non-quantum analogues with similar complexity have been found.
+The overhead of quantum error correction may undermine the speedup offered by many quantum algorithms.
+Algorithm complexity analysis may make abstract assumptions that do not hold in applications. For example, input data may not be available encoded in quantum states, and "oracle functions" used in Grover's algorithm often have internal structure that can be exploited for faster algorithms.
+In particular, building computers with large numbers of qubits may be futile if those qubits are not connected well enough and cannot sustain sufficient entanglement for enough time. Researchers often choose novel tasks to differentiate quantum devices, and to prove lower bounds on the complexity of classical algorithms, but this is not always possible.
+Bill Unruh doubted the practicality of quantum computers in a paper published in 1994. Paul Davies argued that a 400-qubit computer would conflict with the cosmological information bound implied by the holographic principle. Gil Kalai doubted that quantum supremacy would ever be achieved. Physicist Mikhail Dyakonov expressed skepticism of quantum computing as follows:
+
+"So the number of continuous parameters describing the state of such a useful quantum computer at any given moment must be... about 10300... Could we ever learn to control the more than 10300 continuously variable parameters defining the quantum state of such a system? My answer is simple. No, never."
+
+A practical quantum computer must use a physical system as a programmable quantum register. Researchers are exploring several technologies as candidates for reliable qubit implementations. Superconductors and trapped ions are some of the most developed proposals, but experimentalists are considering other hardware possibilities as well.
+For example, topological quantum computer approaches are being explored for more fault-tolerance computing systems.
+The first quantum logic gates were implemented with trapped ions and prototype general-purpose machines with up to 20 qubits have been realized. However, the technology behind these devices combines complex vacuum equipment, lasers, and microwave and radio frequency equipment, making full-scale processors difficult to integrate with standard computing equipment. Moreover, the trapped ion system itself has engineering challenges to overcome.
+The largest commercial systems are based on superconductor devices and have scaled to 2000 qubits. However, the error rates for larger machines have been on the order of 5%. Technologically, these devices are all cryogenic and scaling to large numbers of qubits requires wafer-scale integration, a serious engineering challenge by itself.
+In addition to cryogenic platforms, room-temperature approaches to spin–photon interfaces have been experimentally demonstrated. In 2025, researchers at Stanford University realized a nanoscale device in which a thin layer of molybdenum diselenide is integrated on a nanostructured silicon substrate, enabling a spin–photon interface that operates at ambient conditions using structured "twisted" light to couple electronic and photonic degrees of freedom. Such room-temperature, chip-integrated spin–photon interfaces are being investigated as potential building blocks for heterogeneous quantum networks that combine different qubit modalities and reduce reliance on large cryogenic infrastructures.
+
+Any computational problem solvable by a classical computer is also solvable by a quantum computer. Intuitively, this is because all physical phenomena, including the operation of classical computers, can be described using quantum mechanics, which underlies the operation of quantum computers.
+Conversely, any problem solvable by a quantum computer is also solvable by a classical computer. It is possible to simulate both quantum and classical computers manually with just some paper and a pen, if given enough time. Formally, any quantum or classical computer can be simulated by a Turing machine. Quantum computers provide no computability power over classical computers. Thus, quantum computers cannot solve undecidable problems like the halting problem, and the existence of quantum computers does not disprove the Church–Turing thesis.
+
+While quantum computers cannot solve any problems that classical computers cannot already solve, it is suspected that they can solve certain problems faster than classical computers. For instance, it is known that quantum computers can efficiently factor integers, while this is not believed to be the case for classical computers.
+The class of problems that can be efficiently solved by a quantum computer with bounded error is called BQP, for "bounded error, quantum, polynomial time". More formally, BQP is the class of problems that can be solved by a polynomial-time quantum Turing machine with an error probability of at most 1/3. As a class of probabilistic problems, BQP is the quantum counterpart to BPP ("bounded error, probabilistic, polynomial time"), the class of problems that can be solved by polynomial-time probabilistic Turing machines with bounded error. 
+  
+    
+      
+        
+          
+            B
+            P
+            P
+            ⊆
+            B
+            Q
+            P
+          
+        
+      
+    
+    {\displaystyle {\mathsf {BPP\subseteq BQP}}}
+  
+ but no proof demonstrates that 
+  
+    
+      
+        
+          
+            B
+            Q
+            P
+            ≠
+            B
+            P
+            P
+          
+        
+      
+    
+    {\displaystyle {\mathsf {BQP\neq BPP}}}
+  
+, which intuitively would mean that quantum computers offer superior time complexity over classical computers.
+
+The exact relationship of BQP to P, NP, and PSPACE is not known. However, it is known that 
+  
+    
+      
+        
+          
+            P
+            ⊆
+            B
+            Q
+            P
+            ⊆
+            P
+            S
+            P
+            A
+            C
+            E
+          
+        
+      
+    
+    {\displaystyle {\mathsf {P\subseteq BQP\subseteq PSPACE}}}
+  
+; that is, all problems that can be efficiently solved by a classical computer can be efficiently solved by a quantum computer, and all problems that can be efficiently solved by a quantum computer can be solved by a classical computer with polynomial space resources.
+It is suspected that BQP is a strict superset of P, meaning that problems exist that are efficiently solvable by quantum computers that are not efficiently solvable by classical computers. For instance, integer factorization and the discrete logarithm problem are in BQP and are suspected to be outside of P. On the relationship of BQP to NP, little is known except that NP problems that are not in P are in BQP (integer factorization and the discrete logarithm problem are both in NP, for example). It is suspected that 
+  
+    
+      
+        
+          
+            N
+            P
+            ⊈
+            B
+            Q
+            P
+          
+        
+      
+    
+    {\displaystyle {\mathsf {NP\nsubseteq BQP}}}
+  
+; that is, it is believed that some efficiently checkable problems are not efficiently solvable by a quantum computer. A direct consequence is that BQP is disjoint from the class of NP-complete problems (if an NP-complete problem were in BQP, then it would follow from NP-hardness that all problems in NP are in BQP).
+
+Hanyuan-1 — 100-qubit neutral atom quantum computer from the Chinese Academy of Sciences in China.
+IBM Quantum System One — IBM superconducting quantum-computing system introduced in 2019.
+IBM Quantum System Two — modular superconducting system using IBM Heron processors.
+Jiuzhang — photonic quantum-computing prototype for Gaussian boson sampling.
+QpiAI-Indus — 25-qubit superconducting quantum computer from QpiAI in India.
+
+Cat qubit quantum computer — proposed approach based on cat-state qubits.
+Kane quantum computer — proposed silicon-based nuclear spin quantum-computer architecture.
+Linear optical quantum computing — photonic model using photons and linear optical elements.
+Neutral atom quantum computer — approach using neutral atoms trapped and controlled with optical techniques.
+Nuclear magnetic resonance quantum computer — approach using nuclear magnetic resonance and molecular nuclear-spin states.
+Spin qubit quantum computer — semiconductor architecture using spin states as qubits.
+Superconducting quantum computing — approach using superconducting electronic circuits.
+Topological quantum computer — proposed approach using topological states such as anyons.
+Trapped-ion quantum computer — approach using trapped charged atoms as qubits.
+
+Quantum Information Processing (QIP)
+Theory of Quantum Computation, Communication and Cryptography (TQC)
+Quantum Communication, Measurement and Computing (QCMC)
+IEEE International Conference on Quantum Computing and Engineering (QCE), also known as IEEE Quantum Week
+International Conference on quantum cryptography (QCrypt)
+Q2B – by QC Ware.

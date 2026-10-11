@@ -134,8 +134,11 @@ _DOC_WORDING = re.compile(
 # Encyclopedic lookups -> fixed corpus
 _KB_LOOKUP = re.compile(
     r"^\s*(who (is|was|were|invented|discovered|founded|wrote)|when (was|did|were)|where (is|was|are)|"
-    r"what (is|was|are) the (population|capital|height|length|area|founding|date|year|history|origin)|"
-    r"tell me about|history of|biography of|facts about)\b", re.I)
+    r"how (tall|long|big|old|many|much|far|wide|high|deep|large|heavy)|"
+    r"what (caused|causes|led to|resulted in)|"
+    r"what (is|was|are) the (population|capital|height|length|area|founding|date|year|history|origin|"
+    r"fall of|cause of|outcome of)|"
+    r"why did|tell me about|history of|biography of|facts about)\b", re.I)
 _MULTI = re.compile(
     r"\b(compare|comparison|difference(s)? between|differ from|versus|vs\.?|"
     r"pros and cons|advantages and disadvantages|similarities)\b", re.I)

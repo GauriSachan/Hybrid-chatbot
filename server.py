@@ -37,11 +37,14 @@ app = FastAPI(title="RAG Chatbot Backend")
 
 _lock = threading.Lock()
 _sessions: dict[str, Session] = {}
-_bot = None 
+_bot = None   # built lazily, once, on first request (model loading is slow)
+
 
 # Which LLM provider to use: set with  export CHATBOT_PROVIDER=gemini  (default: anthropic).
-# Free, no credit card: "gemini" (GEMINI_API_KEY, from aistudio.google.com/apikey) or
-# "groq" (GROQ_API_KEY, from console.groq.com). Paid: "anthropic" / "openai".
+# Free, no credit card: "gemini" (GEMINI_API_KEY, from aistudio.google.com/apikey),
+# "groq" (GROQ_API_KEY, from console.groq.com), or "github" (GITHUB_TOKEN, a fine-grained
+# PAT with 'Models: Read-only' permission -- tighter rate limits than the other two).
+# Paid: "anthropic" / "openai".
 PROVIDER = os.getenv("CHATBOT_PROVIDER", "gemini")
 
 
@@ -50,7 +53,7 @@ def get_bot():
     if _bot is None:
         with _lock:
             if _bot is None:                      # re-check: another thread may have built it
-                _bot = build_chatbot(provider="gemini", rerank=False)
+                _bot = build_chatbot(provider=PROVIDER)
     return _bot
 
 

@@ -19,7 +19,7 @@ from pipeline import Session, build_chatbot
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--provider", default="anthropic", choices=["anthropic", "openai"])
+    ap.add_argument("--provider", default="gemini", choices=["anthropic", "openai", "groq", "gemini", "github"])
     ap.add_argument("--verify", action="store_true", help="extra LLM groundedness check")
     ap.add_argument("--quiet", action="store_true", help="hide routing/debug info")
     a = ap.parse_args()

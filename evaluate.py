@@ -61,13 +61,15 @@ def fake_chat_fn(messages, temperature=0.3):
     return "This is a general-knowledge answer (fake LLM)."
 
 
-def run(cases: list[dict], provider: str, use_fake: bool, rerank: bool) -> list[dict]:
+def run(cases: list[dict], provider: str, use_fake: bool, rerank: bool, delay: float = 0.0) -> list[dict]:
     chat_fn = fake_chat_fn if use_fake else None
     bot = build_chatbot(provider=provider, chat_fn=chat_fn, rerank=rerank)
     router = bot.router   # reused for a routing-only pass if ever needed
 
     rows = []
-    for case in cases:
+    for i, case in enumerate(cases):
+        if delay and i > 0:
+            time.sleep(delay)   # stay under the provider's requests-per-minute limit
         session = Session(id=case.get("session_id", "eval"))
         start = time.perf_counter()
         resp = bot.chat(case["question"], session)
@@ -143,14 +145,17 @@ def print_report(rows: list[dict], summary: dict):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("qa_file")
-    ap.add_argument("--provider", default="anthropic", choices=["anthropic", "openai"])
+    ap.add_argument("--provider", default="gemini", choices=["anthropic", "openai", "groq", "gemini", "github"])
     ap.add_argument("--fake", action="store_true", help="no API key needed; routing/wiring check only")
     ap.add_argument("--no-rerank", action="store_true", help="skip the cross-encoder reranker")
+    ap.add_argument("--delay", type=float, default=0.0,
+                    help="seconds to wait between questions, to stay under a free-tier rate limit "
+                         "(e.g. 13 for Gemini's free gemini-3.8-flash tier: 5 requests/minute)")
     ap.add_argument("--out", help="write full per-question results to this JSON file")
     a = ap.parse_args()
 
     cases = load_cases(a.qa_file)
-    rows = run(cases, a.provider, a.fake, rerank=not a.no_rerank)
+    rows = run(cases, a.provider, a.fake, rerank=not a.no_rerank, delay=a.delay)
     summary = summarize(rows)
     print_report(rows, summary)
 

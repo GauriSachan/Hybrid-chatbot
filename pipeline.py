@@ -73,7 +73,7 @@ class Chatbot:
 # --------------------------------------------------------------------------- #
 # Factory: wires the REAL Part 1 + Part 2 into the chatbot
 # --------------------------------------------------------------------------- #
-def build_chatbot(provider: str = "anthropic", chat_fn: Optional[ChatFn] = None,
+def build_chatbot(provider: str = "gemini", chat_fn: Optional[ChatFn] = None,
                   web_search_fn: Optional[WebSearchFn] = None, verify: bool = False,
                   rerank: bool = True) -> Chatbot:
     """Part 5 (API/UI) should create the bot with this, once at startup.
@@ -84,9 +84,10 @@ def build_chatbot(provider: str = "anthropic", chat_fn: Optional[ChatFn] = None,
     from hybrid_retriever import HybridRetriever      # Part 2
     from kb_store import embed_fn, get_store          # Part 1 (shared embedding model)
     if chat_fn is None:
-        from response_generator import anthropic_chat_fn, openai_chat_fn, groq_chat_fn, gemini_chat_fn
-        chat_fn = {"anthropic": anthropic_chat_fn, "openai": openai_chat_fn,
-                   "groq": groq_chat_fn, "gemini": gemini_chat_fn}[provider]()
+        from response_generator import (anthropic_chat_fn, openai_chat_fn, groq_chat_fn,
+                                         gemini_chat_fn, github_models_chat_fn)
+        chat_fn = {"anthropic": anthropic_chat_fn, "openai": openai_chat_fn, "groq": groq_chat_fn,
+                   "gemini": gemini_chat_fn, "github": github_models_chat_fn}[provider]()
 
     retriever = HybridRetriever(get_store())
     if rerank:

@@ -1,0 +1,127 @@
+Newton's laws of motion
+Thermodynamics
+Quantum mechanics
+Theory of relativity
+Electromagnetism
+Optics
+Nuclear physics
+Particle physics
+Standard Model
+String theory
+Entropy
+Wave–particle duality
+Periodic table
+Chemical bond
+Organic chemistry
+Inorganic chemistry
+Biochemistry
+Catalysis
+Polymer
+Acid–base reaction
+Genetics
+Cell (biology)
+Evolution
+DNA
+RNA
+Protein
+Photosynthesis
+Ecosystem
+Immune system
+Plate tectonics
+Astronomy
+Black hole
+Solar System
+Galaxy
+Climate change
+Meteorology
+Oceanography
+Calculus
+Linear algebra
+Probability theory
+Statistics
+Differential equation
+Number theory
+Graph theory
+Trigonometry
+Geometry
+Topology
+Mathematical logic
+Set theory
+Game theory
+Optimization (mathematics)
+Fourier transform
+Matrix (mathematics)
+Complex number
+Civil engineering
+Mechanical engineering
+Electrical engineering
+Chemical engineering
+Aerospace engineering
+Structural engineering
+Control theory
+Signal processing
+Materials science
+Fluid dynamics
+Heat transfer
+Renewable energy
+Nuclear power
+Internal combustion engine
+Semiconductor
+Integrated circuit
+Economics
+Microeconomics
+Macroeconomics
+Supply and demand
+Accounting
+Marketing
+Stock market
+Inflation
+Gross domestic product
+International trade
+Banking
+Entrepreneurship
+Supply chain management
+Corporate finance
+Taxation
+Economic growth
+Monopoly
+Artificial intelligence
+Machine learning
+Deep learning
+Neural network
+Natural language processing
+Computer vision
+Reinforcement learning
+Large language model
+Generative adversarial network
+Transformer (deep learning architecture)
+Supervised learning
+Unsupervised learning
+Expert system
+Turing test
+Robotics
+Robot
+Autonomous robot
+Industrial robot
+Humanoid robot
+Swarm robotics
+Sensor
+Actuator
+Robot kinematics
+Self-driving car
+Drone (aircraft)
+Internet of things
+Computer science
+Algorithm
+Data structure
+Database
+Operating system
+Computer network
+Cryptography
+Software engineering
+Computer architecture
+Compiler
+Distributed computing
+Cloud computing
+Cybersecurity
+Quantum computing

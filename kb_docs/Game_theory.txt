@@ -1,0 +1,3748 @@
+Game theory is the field of applied mathematics that models interactions between multiple agents as "games" of strategy between "players". It is a scientific method of describing, predicting, evaluating, and selecting choices (or "actions"), often with the view of maximising utility outcomes (or "payoffs") for one or more players.
+Game theory has applications in the natural, formal and social sciences, including biology, computer science, economics, law, logic, political science, systems science, and philosophy. Subfields of game theory include algorithmic game theory, behavioral game theory, combinatorial game theory, evolutionary game theory, and quantum game theory.
+In 1994, the Nobel Prize in economics was awarded to the mathematician John Nash, the philosopher John Harsanyi, and the economist Reinhard Selten for their pioneering work in game theory. Since then, game theorists who were awarded the Nobel include Thomas Schelling and Robert Aumann (2005), Leonid Hurwicz, Eric Maskin, and Roger Myerson (2007), Alvin E. Roth and Lloyd S. Shapley (2012), Jean Tirole (2014), and Paul Milgrom and Robert B. Wilson (2020).
+
+In game theory, a "game" is an abstract, mathematical representation of an interaction between agents ("players"), meant to capture the most basic properties of the game, namely: 
+
+the "players";
+the choices or actions available to each player;
+the value (or "payoff") that each player will receive for every possible strategy (i.e. a combination of actions of a given player in response to a given situation);
+the information each player has at the time of making their decisions;
+Eric Rasmusen refers to these four "essential elements" by the acronym "PAPI".
+
+The significance of the work of the early game theorists in economics was its formalisation of strategic interaction, equilibrium concepts, and rational choice behavior, under the assumptions of perfect rationality, self-interest, complete information, and fixed game structure. Game theory as a field had its genesis in the 1944 book Theory of Games and Economic Behavior, written by mathematicians John von Neumann and Oskar Morgenstern. The book built upon von Neumann's earlier work, which used the Brouwer fixed-point theorem on continuous mappings into compact convex sets, a method that later became standard in game theory and mathematical economics. In 1994, the Nobel Prize in economics was awarded to the game theorists John Forbes Nash, Reinhard Selten, and John Harsanyi.
+Initially, as a field of applied mathematics, game theory was used in economics to describe and predict the behaviors of firms, markets, and consumers. The use of game theory in the social sciences has since expanded, with game theory later being widely applied in the analysis of political, sociological, psychological, and animal behaviours. Modern academic research finds applications of game theory in fields as broad as international relations, network science, voting systems, linguistics, law, distributed control, policy design, competition regulations, project management, and military technology.
+Game theory has also been used to develop theories of ethical or normative behavior and to prescribe such behavior. In economics and philosophy, scholars have applied game theory to help in the understanding of good or proper behavior. Game-theoretic approaches have also been suggested in the philosophy of language and philosophy of science.
+
+The main branches of economic theory are game theory, decision theory, mechanism design theory, and general equilibrium theory. Unlike game theory, which analyses multi-agent interactions, decision theory focuses on preferences and the formation of beliefs within single-player scenarios. Decision theory is often used in the form of decision analysis, which shows how best to acquire information before making a decision. Mechanism design theory is closely related to game theory, although the former is more focused on about the consequences of different types of rules, whereas the latter often takes the rules of the game as given. Areas of focus within mechanism design include compensation, wages, risk, incentives, and auctions. Within game theory and mechanism design, a metagame refers to a game that aims to develop rules for the target or subject game, being applied in the contexts of metagame analysis, and confrontation analysis.
+Although game theory has broad application in general equilibrium theory, general equilibrium economists are usually concerned with macroeconomic issues of trade and production in scenarios with a very large number of individual consumers and producers. In particular, the theory of dynamic stochastic general equilibrium (DSGE) is applied, often in combination with game theoretic methods, to issues of investment management, political economy, industrial organisation, international trade, and monetary, fiscal, and tax policy. 
+As an economic methodology, game theory provides a framework for the analysis of decision-making processes involving multiple stakeholders, each with conflicting or cooperative objectives. Unlike traditional econometric models that are descriptive (in the sense of predicting future outcomes based on historical data and statistical trends between variables) and optimisation algorithms (which assume static environments and generally address single-objective problems within predefined constraints), game theory is inherently dynamic and accounts for the strategic interactions among participants. Game theory can further be applied in simulation-based approaches, such as agent-based modeling, in order to replicate market dynamics and policy outcomes under different scenarios by way of modelling reward-punishment mechanisms, competition for limited resources, and coalition formation.
+
+A game is cooperative if the players are able to form binding commitments externally enforced (e.g. through contract law). A game is non-cooperative if players cannot form alliances or if all agreements need to be self-enforcing (e.g. through credible threats).
+
+A symmetric game is a game where each player earns the same payoff when making the same choice. The identity of the player does not change the resulting game facing the other player, and the game looks the same to all players. Formally, a symmetric two-player game can be defined as one where the matrix of one player's payoffs is the transpose of the other player's payoffs.
+
+Zero-sum games (or constant-sum games) are games in which choices by players can neither increase nor decrease the available resources. More informally, in such a game, a player benefits only at the equal expense of others.
+Simultaneous games are games where both players move simultaneously, such that all players are unaware of the actions of other players. Sequential games are games where players do not make decisions simultaneously, and player's earlier actions affect the outcome and decisions of other players.
+Games typically are assumed to be finite and discrete, with a finite number of players, moves, events, and outcomes. Nonetheless, continuous games allow players to choose a strategy from a continuous strategy set. For example, Cournot competition is typically modeled with players' strategies being any non-negative quantities, including fractional quantities.
+
+A game of complete information is one where every player knows the rules, strategies and payoffs available to the other players but not necessarily the actions taken. A Bayesian game, in contrast, is a strategic game with incomplete information. 
+A game with perfect information is a game of complete information that also has all players, at every move in the game, know the previous history of the game and all moves previously made by all other players. An imperfect information game is played when the players do not know all moves already made by the opponent, which is the case in a simultaneous move game.
+Games will change significantly if they are repeated, that is, if the players will interact with each other again in the future with the information they obtained from previous games. In future games, players may act in response to the way in which other players had acted in the past; and in present games, these other players may choose their actions in such a way to prevent them from being punished in future games but instead to reward the players based on their reputation. For example, a potential strategy in repeated games, known as tit for tat, is to cooperate as long as one’s opponent cooperates, and then to defect for some number of rounds so as to "punish" the defector before cooperating again.
+Examples of perfect-information recreational games include tic-tac-toe, checkers, chess, and Go. Poker and bridge are examples of games of imperfect information.
+
+Players in game theory are generally assumed to be rational agents in a formal, mathematical sense. Rational agents act as if they have consistent preferences and unlimited computational capacity to achieve their well-defined objectives, and they behave in a manner in order to obtain the maximum possible payoff. Players are also assumed to be self-interested, with the structure of the game itself being fixed and closed, such that each player’s objective is to maximize expected utility, given the strategies chosen by others. In this regard, utility functions are exogenous, typically one-dimensional, and stable over time. Game theoretic models also generally assume common knowledge of rationality, such that players are rational; they also know that others are rational; and that this knowledge is shared recursively.
+
+Formally, utility, in the von Neumann-Morgenstern framework, can be defined as follows. Let 
+  
+    
+      
+        X
+      
+    
+    {\displaystyle X}
+  
+ be a non-empty set of alternatives, such that 
+  
+    
+      
+        X
+      
+    
+    {\displaystyle X}
+  
+ is the set 
+  
+    
+      
+        Δ
+        (
+        Z
+        )
+      
+    
+    {\displaystyle \Delta (Z)}
+  
+ of simple lotteries (i.e. probability distributions with finite support) on some non-empty set 
+  
+    
+      
+        Z
+      
+    
+    {\displaystyle Z}
+  
+ of sure outcomes. Given two alternatives 
+  
+    
+      
+        x
+        ,
+        y
+        ∈
+        X
+      
+    
+    {\displaystyle x,y\in X}
+  
+, a utility function on 
+  
+    
+      
+        X
+      
+    
+    {\displaystyle X}
+  
+ is a function 
+  
+    
+      
+        u
+        →
+        
+          R
+        
+      
+    
+    {\displaystyle u\to \mathbb {R} }
+  
+ associating to each alternative 
+  
+    
+      
+        x
+        ∈
+        X
+      
+    
+    {\displaystyle x\in X}
+  
+ a utility level 
+  
+    
+      
+        u
+        (
+        x
+        )
+        ∈
+        
+          R
+        
+      
+    
+    {\displaystyle u(x)\in \mathbb {R} }
+  
+. A utility function 
+  
+    
+      
+        u
+      
+    
+    {\displaystyle u}
+  
+ on 
+  
+    
+      
+        X
+      
+    
+    {\displaystyle X}
+  
+ is said to be a von Neumann Morgenstern (vNM) utility function if: 
+
+  
+    
+      
+        u
+        (
+        x
+        )
+        =
+        
+          ∑
+          
+            z
+            ∈
+            Z
+          
+        
+        x
+        (
+        z
+        )
+        u
+        (
+        z
+        )
+        
+        ∀
+        x
+        ∈
+        X
+      
+    
+    {\displaystyle u(x)=\sum _{z\in Z}x(z)u(z)\qquad \forall x\in X}
+  
+. 
+Alternatively, consider 
+  
+    
+      
+        λ
+        ∈
+        [
+        0
+        ,
+        1
+        ]
+      
+    
+    {\displaystyle \lambda \in [0,1]}
+  
+, such that the 
+  
+    
+      
+        λ
+      
+    
+    {\displaystyle \lambda }
+  
+-mixture of 
+  
+    
+      
+        x
+      
+    
+    {\displaystyle x}
+  
+ and 
+  
+    
+      
+        y
+      
+    
+    {\displaystyle y}
+  
+, denoted 
+  
+    
+      
+        x
+        λ
+        y
+      
+    
+    {\displaystyle x\lambda y}
+  
+, can be defined such that
+  
+    
+      
+        x
+        λ
+        y
+        =
+        λ
+        x
+        +
+        (
+        1
+        −
+        λ
+        )
+        y
+      
+    
+    {\displaystyle x\lambda y=\lambda x+(1-\lambda )y}
+  
+. (Note that 
+  
+    
+      
+        x
+        λ
+        y
+        ∈
+        X
+      
+    
+    {\displaystyle x\lambda y\in X}
+  
+.) Thus, the vNM utility function can be defined in the following way:
+
+  
+    
+      
+        u
+        (
+        x
+        λ
+        y
+        )
+        =
+        λ
+        u
+        (
+        x
+        )
+        +
+        (
+        1
+        −
+        λ
+        )
+        u
+        (
+        y
+        )
+        
+        ∀
+         
+         
+        x
+        ,
+        y
+        ∈
+        X
+        ,
+         
+        λ
+        ∈
+        [
+        0
+        ,
+        1
+        ]
+      
+    
+    {\displaystyle u(x\lambda y)=\lambda u(x)+(1-\lambda )u(y)\qquad \forall ~~x,y\in X,~\lambda \in [0,1]}
+  
+
+A pure strategy is a deterministic strategy, whereas a mixed strategy is probabilistic. Games can be divided into strictly and non-strictly determined games, such that a non-strictly determined game possesses only mixed strategies, whereas a strictly determined game possesses pure strategies as well. Only a strictly determined game possesses a saddle point, that is, an equilibrium that represents the best strategies for all players.  
+For a two-player game, a dominant strategy for a given player is a strategy that produces a better payoff than the other player; conversely, a dominated strategy is one that is always worse than the other player and therefore never rational to play.
+
+Dominated strategies can be grouped into strictly and weakly dominated strategies. A strategy is strictly dominated if, no matter what the other players do, a player always receives a strictly higher payoff by playing another strategy. A weakly dominated strategy, on the other hand, is one that does at least as well as all other strategies, no matter what the other players do, and is strictly better than at least one other strategy.
+Formally, for the two-player game 
+  
+    
+      
+        (
+        A
+        ,
+        B
+        )
+        ∈
+        
+          
+            R
+          
+          
+            2
+          
+          
+            m
+            ×
+            n
+          
+        
+      
+    
+    {\displaystyle (A,B)\in \mathbb {R} _{2}^{m\times n}}
+  
+, a strategy 
+  
+    
+      
+        s
+      
+    
+    {\displaystyle s}
+  
+ is strictly dominated by strategy 
+  
+    
+      
+        
+          
+            
+              s
+              ¯
+            
+          
+        
+      
+    
+    {\displaystyle {\bar {s}}}
+  
+ if, for all strategies of the other player 
+  
+    
+      
+        t
+      
+    
+    {\displaystyle t}
+  
+, 
+  
+    
+      
+        u
+        (
+        s
+        ,
+        t
+        )
+        <
+        u
+        (
+        
+          
+            
+              s
+              ¯
+            
+          
+        
+        ,
+        t
+        )
+      
+    
+    {\displaystyle u(s,t)<u({\bar {s}},t)}
+  
+,, where 
+  
+    
+      
+        u
+      
+    
+    {\displaystyle u}
+  
+ represents the utility function. A strategy may be weakly dominated if, instead, 
+  
+    
+      
+        u
+        (
+        s
+        ,
+        t
+        )
+        ≤
+        u
+        (
+        
+          
+            
+              s
+              ¯
+            
+          
+        
+        ,
+        t
+        )
+      
+    
+    {\displaystyle u(s,t)\leq u({\bar {s}},t)}
+  
+ and there exists some value of 
+  
+    
+      
+        
+          t
+          ′
+        
+      
+    
+    {\displaystyle t'}
+  
+ such that 
+  
+    
+      
+        u
+        (
+        s
+        ,
+        
+          t
+          ′
+        
+        )
+        <
+        u
+        (
+        
+          
+            
+              s
+              ¯
+            
+          
+        
+        ,
+        
+          t
+          ′
+        
+        )
+      
+    
+    {\displaystyle u(s,t')<u({\bar {s}},t')}
+  
+.
+
+For any given game, a strategy profile (or strategy combination) is a combination of strategies, such that each player gets one strategy. For example, in a 3-player game where the action set 
+  
+    
+      
+        
+          
+            A
+          
+        
+      
+    
+    {\displaystyle {\mathcal {A}}}
+  
+ is such that 
+  
+    
+      
+        ∀
+        i
+        ,
+        
+          
+            
+              A
+            
+          
+          
+            i
+          
+        
+        =
+        {
+        A
+        ,
+        B
+        }
+      
+    
+    {\displaystyle \forall i,{\mathcal {A}}_{i}=\{A,B\}}
+  
+, a valid strategy profile might be 
+  
+    
+      
+        s
+        =
+        (
+        (
+        1
+        ,
+        0
+        )
+        ,
+        (
+        1
+        ,
+        0
+        )
+        ,
+        (
+        0
+        ,
+        1
+        )
+        )
+      
+    
+    {\displaystyle s=((1,0),(1,0),(0,1))}
+  
+, indicating that players 1 and 2 choose A, and player 3 chooses B. 
+An equilibrium is a stable state in which either one outcome occurs or a set of outcomes occur with known probability. A Nash equilibrium is a particular type of equilibrium strategy profile where every player is best responding to the strategies of the others. In such a setting, no player has an incentive to unilaterally deviate from their choice. John Forbes Nash proved that at least one such equilibrium exists in any finite non-cooperative game.
+
+Non-cooperative games can be broadly represented in two forms. Generally, normal form is used to represent non-cooperative simultaneous games, and extensive form is used to represent non-cooperative sequential ones. Alternative representations also exist, for example, characteristic function form is used to represent cooperative games.
+Every extensive-form game has an equivalent normal-form game, however, the transformation to normal form may result in an exponential blowup in the size of the representation, making it computationally impractical.
+
+The normal form (or strategic form) game is usually represented by a matrix which shows the players, strategies, and payoffs. In linear algebra notation, a two-player normal-form game can be mapped by a matrix. A general matrix mapping rows (actions of the first player) and columns (actions of the second player) to pairs of payoff values can be represented as follows:
+
+  
+    
+      
+        Γ
+        =
+        
+          
+            [
+            
+              
+                
+                  (
+                  
+                    u
+                    
+                      1
+                    
+                  
+                  (
+                  
+                    r
+                    
+                      1
+                    
+                  
+                  ,
+                  
+                    c
+                    
+                      1
+                    
+                  
+                  )
+                  ,
+                  
+                    u
+                    
+                      2
+                    
+                  
+                  (
+                  
+                    r
+                    
+                      1
+                    
+                  
+                  ,
+                  
+                    c
+                    
+                      1
+                    
+                  
+                  )
+                  )
+                
+                
+                  (
+                  
+                    u
+                    
+                      1
+                    
+                  
+                  (
+                  
+                    r
+                    
+                      1
+                    
+                  
+                  ,
+                  
+                    c
+                    
+                      2
+                    
+                  
+                  )
+                  ,
+                  
+                    u
+                    
+                      2
+                    
+                  
+                  (
+                  
+                    r
+                    
+                      1
+                    
+                  
+                  ,
+                  
+                    c
+                    
+                      2
+                    
+                  
+                  )
+                  )
+                
+                
+                  ⋯
+                
+                
+                  (
+                  
+                    u
+                    
+                      1
+                    
+                  
+                  (
+                  
+                    r
+                    
+                      1
+                    
+                  
+                  ,
+                  
+                    c
+                    
+                      n
+                    
+                  
+                  )
+                  ,
+                  
+                    u
+                    
+                      2
+                    
+                  
+                  (
+                  
+                    r
+                    
+                      1
+                    
+                  
+                  ,
+                  
+                    c
+                    
+                      n
+                    
+                  
+                  )
+                  )
+                
+              
+              
+                
+                  (
+                  
+                    u
+                    
+                      1
+                    
+                  
+                  (
+                  
+                    r
+                    
+                      2
+                    
+                  
+                  ,
+                  
+                    c
+                    
+                      1
+                    
+                  
+                  )
+                  ,
+                  
+                    u
+                    
+                      2
+                    
+                  
+                  (
+                  
+                    r
+                    
+                      2
+                    
+                  
+                  ,
+                  
+                    c
+                    
+                      1
+                    
+                  
+                  )
+                  )
+                
+                
+                  (
+                  
+                    u
+                    
+                      1
+                    
+                  
+                  (
+                  
+                    r
+                    
+                      2
+                    
+                  
+                  ,
+                  
+                    c
+                    
+                      2
+                    
+                  
+                  )
+                  ,
+                  
+                    u
+                    
+                      2
+                    
+                  
+                  (
+                  
+                    r
+                    
+                      2
+                    
+                  
+                  ,
+                  
+                    c
+                    
+                      2
+                    
+                  
+                  )
+                  )
+                
+                
+                  ⋯
+                
+                
+                  (
+                  
+                    u
+                    
+                      1
+                    
+                  
+                  (
+                  
+                    r
+                    
+                      2
+                    
+                  
+                  ,
+                  
+                    c
+                    
+                      n
+                    
+                  
+                  )
+                  ,
+                  
+                    u
+                    
+                      2
+                    
+                  
+                  (
+                  
+                    r
+                    
+                      2
+                    
+                  
+                  ,
+                  
+                    c
+                    
+                      n
+                    
+                  
+                  )
+                  )
+                
+              
+              
+                
+                  ⋮
+                
+                
+                  ⋮
+                
+                
+                  ⋱
+                
+                
+                  ⋮
+                
+              
+              
+                
+                  (
+                  
+                    u
+                    
+                      1
+                    
+                  
+                  (
+                  
+                    r
+                    
+                      m
+                    
+                  
+                  ,
+                  
+                    c
+                    
+                      1
+                    
+                  
+                  )
+                  ,
+                  
+                    u
+                    
+                      2
+                    
+                  
+                  (
+                  
+                    r
+                    
+                      m
+                    
+                  
+                  ,
+                  
+                    c
+                    
+                      1
+                    
+                  
+                  )
+                  )
+                
+                
+                  (
+                  
+                    u
+                    
+                      1
+                    
+                  
+                  (
+                  
+                    r
+                    
+                      m
+                    
+                  
+                  ,
+                  
+                    c
+                    
+                      2
+                    
+                  
+                  )
+                  ,
+                  
+                    u
+                    
+                      2
+                    
+                  
+                  (
+                  
+                    r
+                    
+                      m
+                    
+                  
+                  ,
+                  
+                    c
+                    
+                      2
+                    
+                  
+                  )
+                  )
+                
+                
+                  ⋯
+                
+                
+                  (
+                  
+                    u
+                    
+                      1
+                    
+                  
+                  (
+                  
+                    r
+                    
+                      m
+                    
+                  
+                  ,
+                  
+                    c
+                    
+                      n
+                    
+                  
+                  )
+                  ,
+                  
+                    u
+                    
+                      2
+                    
+                  
+                  (
+                  
+                    r
+                    
+                      m
+                    
+                  
+                  ,
+                  
+                    c
+                    
+                      n
+                    
+                  
+                  )
+                  )
+                
+              
+            
+            ]
+          
+        
+      
+    
+    {\displaystyle \Gamma ={\begin{bmatrix}(u_{1}(r_{1},c_{1}),u_{2}(r_{1},c_{1}))&(u_{1}(r_{1},c_{2}),u_{2}(r_{1},c_{2}))&\cdots &(u_{1}(r_{1},c_{n}),u_{2}(r_{1},c_{n}))\\(u_{1}(r_{2},c_{1}),u_{2}(r_{2},c_{1}))&(u_{1}(r_{2},c_{2}),u_{2}(r_{2},c_{2}))&\cdots &(u_{1}(r_{2},c_{n}),u_{2}(r_{2},c_{n}))\\\vdots &\vdots &\ddots &\vdots \\(u_{1}(r_{m},c_{1}),u_{2}(r_{m},c_{1}))&(u_{1}(r_{m},c_{2}),u_{2}(r_{m},c_{2}))&\cdots &(u_{1}(r_{m},c_{n}),u_{2}(r_{m},c_{n}))\end{bmatrix}}}
+  
+
+where the set of actions (or action set) 
+  
+    
+      
+        A
+      
+    
+    {\displaystyle A}
+  
+ available to each player are, respectively, 
+  
+    
+      
+        
+          A
+          
+            1
+          
+        
+        =
+        {
+        
+          r
+          
+            i
+          
+        
+        ∣
+        1
+        ≤
+        i
+        ≤
+        m
+        }
+      
+    
+    {\displaystyle A_{1}=\{r_{i}\mid 1\leq i\leq m\}}
+  
+ and 
+  
+    
+      
+        
+          A
+          
+            2
+          
+        
+        =
+        {
+        
+          c
+          
+            j
+          
+        
+        ∣
+        1
+        ≤
+        j
+        ≤
+        n
+        }
+      
+    
+    {\displaystyle A_{2}=\{c_{j}\mid 1\leq j\leq n\}}
+  
+.
+An alternative approach is to use two separate matrices: 
+  
+    
+      
+        
+          M
+          
+            r
+          
+        
+      
+    
+    {\displaystyle M_{r}}
+  
+ for the row player and 
+  
+    
+      
+        
+          M
+          
+            c
+          
+        
+      
+    
+    {\displaystyle M_{c}}
+  
+ for the column player, defined as follows:
+
+  
+    
+      
+        (
+        
+          M
+          
+            r
+          
+        
+        
+          )
+          
+            i
+            j
+          
+        
+        =
+        
+          u
+          
+            1
+          
+        
+        (
+        
+          r
+          
+            i
+          
+        
+        ,
+        
+          c
+          
+            j
+          
+        
+        )
+        
+        (
+        
+          M
+          
+            c
+          
+        
+        
+          )
+          
+            i
+            j
+          
+        
+        =
+        
+          u
+          
+            2
+          
+        
+        (
+        
+          r
+          
+            i
+          
+        
+        ,
+        
+          c
+          
+            j
+          
+        
+        )
+      
+    
+    {\displaystyle (M_{r})_{ij}=u_{1}(r_{i},c_{j})\qquad (M_{c})_{ij}=u_{2}(r_{i},c_{j})}
+  
+
+The most popular example of a normal-form game is Prisoner's dilemma. In the dilemma, there are two players who are both accomplices to a crime. Both have been arrested and imprisoned, and they cannot communicate with each other, nor do they know what the other prisoner is doing. The police do not have sufficient evidence for a conviction, but the prisoners do not know this. Instead, they tell each prisoner that, if they confess to their crimes, they will get a lighter sentence. Each player may thus either inform on themselves and the other player, or they may remain silent. If neither confess, neither will go to jail; if both confess, they will get an ordinary sentence; however, if one confesses and the other does not, the confessor will get a short sentence while the denier will get a long one.
+Despite the best possible outcome being the situation in which both parties refuse to confess, the dominant strategy for each individual player, no matter what a suspect believes his partner is going to do, is in fact to betray the other, which aligns with the sure-thing principle. The utility of this illustration is that it demonstrates the conflict between the pursuit of individual, selfish goals and the common good of both parties, representing an issue present in a variety of public goods problems.
+
+Formally, an 
+  
+    
+      
+        N
+      
+    
+    {\displaystyle N}
+  
+-player normal form game comprises:
+
+A finite set of 
+  
+    
+      
+        N
+      
+    
+    {\displaystyle N}
+  
+ players.
+An action set for the players: 
+  
+    
+      
+        {
+        
+          A
+          
+            1
+          
+        
+        ,
+        
+          A
+          
+            2
+          
+        
+        ,
+        …
+        ,
+        
+          A
+          
+            N
+          
+        
+        }
+      
+    
+    {\displaystyle \{A_{1},A_{2},\ldots ,A_{N}\}}
+  
+.
+A set of payoff functions for the player that maps action sets to 
+  
+    
+      
+        
+          R
+        
+      
+    
+    {\displaystyle \mathbb {R} }
+  
+: 
+  
+    
+      
+        
+          u
+          
+            i
+          
+        
+        :
+        
+          A
+          
+            1
+          
+        
+        ×
+        
+          A
+          
+            2
+          
+        
+        ×
+        ⋯
+        ×
+        
+          A
+          
+            N
+          
+        
+        →
+        
+          R
+        
+      
+    
+    {\displaystyle u_{i}:A_{1}\times A_{2}\times \cdots \times A_{N}\to \mathbb {R} }
+  
+.
+A strategy 
+  
+    
+      
+        σ
+      
+    
+    {\displaystyle \sigma }
+  
+ for a player with action set 
+  
+    
+      
+        A
+      
+    
+    {\displaystyle A}
+  
+ is a probability distribution over the elements of 
+  
+    
+      
+        A
+      
+    
+    {\displaystyle A}
+  
+, such that:
+
+  
+    
+      
+        σ
+        ∈
+        [
+        0
+        ,
+        1
+        
+          ]
+          
+            
+              R
+            
+          
+          
+            
+              |
+            
+            A
+            
+              |
+            
+          
+        
+      
+    
+    {\displaystyle \sigma \in [0,1]_{\mathbb {R} }^{|A|}}
+  
+, with 
+  
+    
+      
+        
+          ∑
+          
+            i
+            =
+            1
+          
+          
+            
+              |
+            
+            A
+            
+              |
+            
+          
+        
+        
+          σ
+          
+            i
+          
+        
+        =
+        1
+      
+    
+    {\displaystyle \sum _{i=1}^{|A|}\sigma _{i}=1}
+  
+.
+Given an action set 
+  
+    
+      
+        
+          
+            A
+          
+        
+      
+    
+    {\displaystyle {\mathcal {A}}}
+  
+, the set of valid strategies (also known as the strategic profile or strategic set) is denoted as 
+  
+    
+      
+        Δ
+        
+          
+            A
+          
+        
+      
+    
+    {\displaystyle \Delta {\mathcal {A}}}
+  
+ so that:
+
+  
+    
+      
+        Δ
+        
+          
+            A
+          
+        
+        =
+        
+          {
+          
+            σ
+            ∈
+            [
+            0
+            ,
+            1
+            
+              ]
+              
+                
+                  R
+                
+              
+              
+                
+                  |
+                
+                
+                  
+                    A
+                  
+                
+                
+                  |
+                
+              
+            
+            
+              |
+              
+                
+                  ∑
+                  
+                    i
+                    =
+                    1
+                  
+                  
+                    
+                      |
+                    
+                    
+                      
+                        A
+                      
+                    
+                    
+                      |
+                    
+                  
+                
+                
+                  σ
+                  
+                    i
+                  
+                
+                =
+                1
+              
+              
+            
+          
+          }
+        
+      
+    
+    {\displaystyle \Delta {\mathcal {A}}=\left\{\sigma \in [0,1]_{\mathbb {R} }^{|{\mathcal {A}}|}\left|\sum _{i=1}^{|{\mathcal {A}}|}\sigma _{i}=1\right.\right\}}
+  
+
+In order to calculate expected utility for a given action set,
+
+  
+    
+      
+        
+          u
+          
+            i
+          
+        
+        (
+        
+          σ
+          
+            1
+          
+        
+        ,
+        
+          σ
+          
+            2
+          
+        
+        )
+        =
+        
+          ∑
+          
+            
+              a
+              
+                1
+              
+            
+            ∈
+            
+              
+                
+                  A
+                
+              
+              
+                1
+              
+            
+          
+        
+        
+          ∑
+          
+            
+              a
+              
+                2
+              
+            
+            ∈
+            
+              
+                
+                  A
+                
+              
+              
+                2
+              
+            
+          
+        
+        
+          σ
+          
+            1
+          
+        
+        (
+        
+          a
+          
+            1
+          
+        
+        )
+        
+          σ
+          
+            2
+          
+        
+        (
+        
+          a
+          
+            2
+          
+        
+        )
+        
+          u
+          
+            i
+          
+        
+        (
+        
+          a
+          
+            1
+          
+        
+        ,
+        
+          a
+          
+            2
+          
+        
+        )
+      
+    
+    {\displaystyle u_{i}(\sigma _{1},\sigma _{2})=\sum _{a_{1}\in {\mathcal {A}}_{1}}\sum _{a_{2}\in {\mathcal {A}}_{2}}\sigma _{1}(a_{1})\sigma _{2}(a_{2})u_{i}(a_{1},a_{2})}
+  
+In mathematical optimisation, assuming complete information, a normal-form game can also be defined as follows:
+
+Let I be a set of agents, 
+  
+    
+      
+        
+          
+            I
+          
+        
+        :=
+        {
+        1
+        ,
+        2
+        ,
+        …
+        ,
+        N
+        }
+      
+    
+    {\displaystyle {\mathcal {I}}:=\{1,2,\ldots ,N\}}
+  
+.
+Each agent 
+  
+    
+      
+        i
+        ∈
+        
+          
+            I
+          
+        
+      
+    
+    {\displaystyle i\in {\mathcal {I}}}
+  
+ chooses its decision variable (i.e., its strategy or action) 
+  
+    
+      
+        
+          x
+          
+            i
+          
+        
+      
+    
+    {\displaystyle x_{i}}
+  
+ from its local decision set.
+Let Ω be a decision set, such that the local decision set 
+  
+    
+      
+        
+          Ω
+          
+            i
+          
+        
+        ⊆
+        
+          
+            R
+          
+          
+            
+              n
+              
+                i
+              
+            
+          
+        
+      
+    
+    {\displaystyle \Omega _{i}\subseteq \mathbb {R} ^{n_{i}}}
+  
+, and 
+  
+    
+      
+        Ω
+        =
+        
+          Ω
+          
+            1
+          
+        
+        ×
+        ⋯
+        ×
+        
+          Ω
+          
+            N
+          
+        
+        ⊆
+        
+          
+            R
+          
+          
+            n
+          
+        
+      
+    
+    {\displaystyle \Omega =\Omega _{1}\times \cdots \times \Omega _{N}\subseteq \mathbb {R} ^{n}}
+  
+ is the overall decision space, and 
+  
+    
+      
+        n
+        =
+        
+          ∑
+          
+            i
+            ∈
+            
+              
+                I
+              
+            
+          
+        
+        
+          n
+          
+            i
+          
+        
+      
+    
+    {\displaystyle n=\sum _{i\in {\mathcal {I}}}n_{i}}
+  
+.
+Let 
+  
+    
+      
+        x
+        :=
+        
+          
+            (
+            
+              
+                
+                  
+                    x
+                    
+                      1
+                    
+                  
+                
+              
+              
+                
+                  ⋮
+                
+              
+              
+                
+                  
+                    x
+                    
+                      N
+                    
+                  
+                
+              
+            
+            )
+          
+        
+        =
+        col
+        ⁡
+        (
+        (
+        
+          x
+          
+            i
+          
+        
+        
+          )
+          
+            i
+            ∈
+            
+              
+                I
+              
+            
+          
+        
+        )
+        ∈
+        Ω
+      
+    
+    {\displaystyle x:={\begin{pmatrix}x_{1}\\\vdots \\x_{N}\end{pmatrix}}=\operatorname {col} ((x_{i})_{i\in {\mathcal {I}}})\in \Omega }
+  
+ denote the stacked vector of all agent decisions.
+Thus, the game, 
+  
+    
+      
+        
+          
+            G
+          
+        
+        =
+        (
+        
+          
+            I
+          
+        
+        ,
+        (
+        
+          J
+          
+            i
+          
+        
+        
+          )
+          
+            i
+            ∈
+            
+              
+                I
+              
+            
+          
+        
+        ,
+        
+          
+            X
+          
+        
+        )
+      
+    
+    {\displaystyle {\mathcal {G}}=({\mathcal {I}},(J_{i})_{i\in {\mathcal {I}}},{\mathcal {X}})}
+  
+, is then defined such that the goal of each agent 
+  
+    
+      
+        i
+        ∈
+        
+          
+            I
+          
+        
+      
+    
+    {\displaystyle i\in {\mathcal {I}}}
+  
+ is to minimize its objective function 
+  
+    
+      
+        
+          J
+          
+            i
+          
+        
+        (
+        
+          x
+          
+            i
+          
+        
+        ,
+        
+          x
+          
+            −
+            i
+          
+        
+        )
+      
+    
+    {\displaystyle J_{i}(x_{i},x_{-i})}
+  
+, which depends on both the local variable 
+  
+    
+      
+        
+          x
+          
+            i
+          
+        
+      
+    
+    {\displaystyle x_{i}}
+  
+ and the decision variables of the other agents, 
+  
+    
+      
+        
+          x
+          
+            −
+            i
+          
+        
+        :=
+        col
+        ⁡
+        (
+        (
+        
+          x
+          
+            j
+          
+        
+        
+          )
+          
+            j
+            ∈
+            
+              
+                I
+              
+            
+            ∖
+            {
+            i
+            }
+          
+        
+        )
+      
+    
+    {\displaystyle x_{-i}:=\operatorname {col} ((x_{j})_{j\in {\mathcal {I}}\setminus \{i\}})}
+  
+.
+
+Extensive form games can be visualized using game trees. Within a tree, each vertex (or node) represents a point of choice for a player; the lines out of the vertex represent a possible action for that player; information sets are represented by dashed lines; and the payoffs are specified at the bottom of the tree, that is, being represented as the terminal nodes. The extensive form can be viewed as a multi-player generalization of a decision tree. 
+Solving an extensive form game (that is, finding its Nash equilibrium) involves the use of backwards induction, which involves the analysis of the tree from the end nodes to the root, removing or "pruning" dominated strategies at each information set.
+
+The "battle of the sexes" game involves two players of different sexes, arbitrarily chosen, each with a different set of preferences. 
+
+Formally, an 
+  
+    
+      
+        N
+      
+    
+    {\displaystyle N}
+  
+-player extensive form game with complete information is characterised by:
+
+A finite set of players 
+  
+    
+      
+        
+          
+            N
+          
+        
+      
+    
+    {\displaystyle {\mathcal {N}}}
+  
+ with 
+  
+    
+      
+        
+          |
+        
+        
+          
+            N
+          
+        
+        
+          |
+        
+        =
+        N
+      
+    
+    {\displaystyle |{\mathcal {N}}|=N}
+  
+.
+A tree 
+  
+    
+      
+        G
+        =
+        (
+        V
+        ,
+        E
+        ,
+        
+          x
+          
+            0
+          
+        
+        )
+      
+    
+    {\displaystyle G=(V,E,x^{0})}
+  
+ where:
+
+  
+    
+      
+        V
+      
+    
+    {\displaystyle V}
+  
+ is the set of vertices,
+
+  
+    
+      
+        E
+      
+    
+    {\displaystyle E}
+  
+ is the set of edges, and
+
+  
+    
+      
+        
+          x
+          
+            0
+          
+        
+        ∈
+        V
+      
+    
+    {\displaystyle x^{0}\in V}
+  
+ is the root of the tree.
+A partition 
+  
+    
+      
+        (
+        
+          V
+          
+            i
+          
+        
+        
+          )
+          
+            i
+            ∈
+            
+              
+                N
+              
+            
+          
+        
+      
+    
+    {\displaystyle (V_{i})_{i\in {\mathcal {N}}}}
+  
+ of the non-terminal vertices, assigning each decision node to a player.
+A set 
+  
+    
+      
+        O
+      
+    
+    {\displaystyle O}
+  
+ of possible outcomes.
+A function 
+  
+    
+      
+        u
+      
+    
+    {\displaystyle u}
+  
+ mapping each terminal node (leaf) of 
+  
+    
+      
+        G
+      
+    
+    {\displaystyle G}
+  
+ to an element of 
+  
+    
+      
+        O
+      
+    
+    {\displaystyle O}
+  
+.
+A strategy for a player is a mapping from each information set to a probability distribution over the available actions at that set. Given a game in extensive form 
+  
+    
+      
+        (
+        
+          
+            N
+          
+        
+        ,
+        G
+        ,
+        (
+        
+          V
+          
+            i
+          
+        
+        
+          )
+          
+            i
+            ∈
+            
+              
+                N
+              
+            
+          
+        
+        ,
+        O
+        ,
+        u
+        )
+      
+    
+    {\displaystyle ({\mathcal {N}},G,(V_{i})_{i\in {\mathcal {N}}},O,u)}
+  
+, the set of information sets 
+  
+    
+      
+        
+          
+            
+              V
+            
+          
+          
+            i
+          
+        
+      
+    
+    {\displaystyle {\mathcal {V}}_{i}}
+  
+ for player 
+  
+    
+      
+        i
+        ∈
+        
+          
+            N
+          
+        
+      
+    
+    {\displaystyle i\in {\mathcal {N}}}
+  
+ is defined as a partition of 
+  
+    
+      
+        
+          V
+          
+            i
+          
+        
+      
+    
+    {\displaystyle V_{i}}
+  
+, such that each element of 
+  
+    
+      
+        
+          
+            
+              V
+            
+          
+          
+            i
+          
+        
+      
+    
+    {\displaystyle {\mathcal {V}}_{i}}
+  
+ denotes a set of nodes at which the player cannot distinguish their exact location when choosing an action. Thus, every information set contains vertices for a single player, who has the move at that information set, and all vertices in an information set must have the same number of successors (with the same action labels).
+Games of incomplete information can be reduced, within extensive form representations, to games of imperfect information by introducing "moves by nature", that is, by characterising nature as a "player 0". Information sets belonging to nature 
+  
+    
+      
+        
+          
+            
+              V
+            
+          
+          
+            0
+          
+        
+      
+    
+    {\displaystyle {\mathcal {V}}_{0}}
+  
+ are known as "singletons", with moves of nature regarded as behavior strategies, that is, strategies that map from information sets to probability distributions over feasible actions.
+
+In cooperative game theory the characteristic function lists the payoff of each coalition. The origin of this formulation is in John von Neumann and Oskar Morgenstern's book.
+Formally, a characteristic function is a function 
+  
+    
+      
+        v
+        :
+        
+          2
+          
+            N
+          
+        
+        →
+        
+          R
+        
+      
+    
+    {\displaystyle v:2^{N}\to \mathbb {R} }
+  
+ from the set of all possible coalitions of players to a set of payments, and also satisfies 
+  
+    
+      
+        v
+        (
+        ∅
+        )
+        =
+        0
+      
+    
+    {\displaystyle v(\emptyset )=0}
+  
+. The function describes how much collective payoff a set of players can gain by forming a coalition.
+
+Alternative game representation forms are used for some subclasses of games or adjusted to the needs of interdisciplinary research. In addition to classical game representations, some of the alternative representations also encode time related aspects.
+
+In an N-player normal form game, a strategy 
+  
+    
+      
+        
+          s
+          
+            ∗
+          
+        
+      
+    
+    {\displaystyle s^{*}}
+  
+ for player i is a best response to some incomplete strategy profile 
+  
+    
+      
+        
+          s
+          
+            −
+            i
+          
+        
+      
+    
+    {\displaystyle s_{-i}}
+  
+, representing the strategies chosen by all players except player i, if and only if:
+
+  
+    
+      
+        
+          u
+          
+            i
+          
+        
+        (
+        
+          s
+          
+            ∗
+          
+        
+        ,
+        
+          s
+          
+            −
+            i
+          
+        
+        )
+        ≥
+        
+          u
+          
+            i
+          
+        
+        (
+        s
+        ,
+        
+          s
+          
+            −
+            i
+          
+        
+        )
+        
+        ∀
+        s
+        ∈
+        Δ
+        (
+        
+          
+            
+              A
+            
+          
+          
+            i
+          
+        
+        )
+        .
+      
+    
+    {\displaystyle u_{i}(s^{*},s_{-i})\geq u_{i}(s,s_{-i})\qquad \forall s\in \Delta ({\mathcal {A}}_{i}).}
+  
+
+That is, 
+  
+    
+      
+        
+          s
+          
+            ∗
+          
+        
+      
+    
+    {\displaystyle s^{*}}
+  
+ gives player i the highest possible payoff, given the strategies chosen by the other players.
+The action set that a strategy σ plays with non zero probability is referred to as the support of σ. A mixed strategy is a best response if and only if every pure strategy within its support is itself a best response. For example, for a two-player game 
+  
+    
+      
+        (
+        A
+        ,
+        B
+        )
+        ∈
+        
+          
+            (
+            
+              
+                R
+              
+              
+                m
+                ×
+                n
+              
+            
+            )
+          
+          
+            2
+          
+        
+      
+    
+    {\displaystyle (A,B)\in \left(\mathbb {R} ^{m\times n}\right)^{2}}
+  
+, a strategy 
+  
+    
+      
+        
+          σ
+          
+            r
+          
+          
+            ∗
+          
+        
+      
+    
+    {\displaystyle \sigma _{r}^{*}}
+  
+ of the row player is a best response to a strategy 
+  
+    
+      
+        
+          σ
+          
+            c
+          
+        
+      
+    
+    {\displaystyle \sigma _{c}}
+  
+ of the column player if and only if:
+
+  
+    
+      
+        
+          σ
+          
+            r
+          
+          
+            ∗
+          
+        
+        (
+        i
+        )
+        >
+        0
+        
+        ⇒
+        
+        (
+        A
+        
+          σ
+          
+            c
+          
+          
+            
+              T
+            
+          
+        
+        
+          )
+          
+            i
+          
+        
+        =
+        
+          max
+          
+            k
+            ∈
+            
+              
+                
+                  A
+                
+              
+              
+                1
+              
+            
+          
+        
+        (
+        A
+        
+          σ
+          
+            c
+          
+          
+            
+              T
+            
+          
+        
+        
+          )
+          
+            k
+          
+        
+        
+        ∀
+        i
+        ∈
+        
+          
+            
+              A
+            
+          
+          
+            1
+          
+        
+      
+    
+    {\displaystyle \sigma _{r}^{*}(i)>0\quad \Rightarrow \quad (A\sigma _{c}^{\mathsf {T}})_{i}=\max _{k\in {\mathcal {A}}_{1}}(A\sigma _{c}^{\mathsf {T}})_{k}\qquad \forall i\in {\mathcal {A}}_{1}}
+  
+
+where the term 
+  
+    
+      
+        (
+        A
+        
+          σ
+          
+            c
+          
+          
+            
+              T
+            
+          
+        
+        
+          )
+          
+            i
+          
+        
+      
+    
+    {\displaystyle (A\sigma _{c}^{\mathsf {T}})_{i}}
+  
+ represents the utility for the row player when playing their 
+  
+    
+      
+        
+          i
+          
+            
+              t
+              h
+            
+          
+        
+      
+    
+    {\displaystyle i^{\mathrm {th} }}
+  
+ action.
+
+Given a zero-sum game defined by a payoff matrix 
+  
+    
+      
+        M
+        ∈
+        
+          
+            R
+          
+          
+            m
+            ×
+            n
+          
+        
+      
+    
+    {\displaystyle M\in \mathbb {R} ^{m\times n}}
+  
+ and a strategy 
+  
+    
+      
+        y
+        ∈
+        
+          
+            R
+          
+          
+            n
+          
+        
+      
+    
+    {\displaystyle y\in \mathbb {R} ^{n}}
+  
+ for the column player, the row player seeks a best response strategy 
+  
+    
+      
+        x
+        ∈
+        
+          
+            R
+          
+          
+            m
+          
+        
+      
+    
+    {\displaystyle x\in \mathbb {R} ^{m}}
+  
+ that maximises their expected payoff: 
+  
+    
+      
+        
+          max
+          
+            x
+            ∈
+            
+              
+                
+                  A
+                
+              
+              
+                1
+              
+            
+          
+        
+        x
+        M
+        
+          y
+          
+            
+              T
+            
+          
+        
+      
+    
+    {\displaystyle \max _{x\in {\mathcal {A}}_{1}}xMy^{\mathsf {T}}}
+  
+. This corresponds to choosing the rows of 
+  
+    
+      
+        M
+      
+    
+    {\displaystyle M}
+  
+ that yields the highest expected value under the strategy 
+  
+    
+      
+        y
+      
+    
+    {\displaystyle y}
+  
+, i.e.,
+  
+    
+      
+        
+          max
+          
+            i
+            ≤
+            m
+          
+        
+        (
+        M
+        
+          y
+          
+            
+              T
+            
+          
+        
+        
+          )
+          
+            i
+          
+        
+      
+    
+    {\displaystyle \max _{i\leq m}(My^{\mathsf {T}})_{i}}
+  
+. The column player, by selecting 
+  
+    
+      
+        y
+      
+    
+    {\displaystyle y}
+  
+, can influence the upper bound 
+  
+    
+      
+        v
+      
+    
+    {\displaystyle v}
+  
+ of this maximum. Since the game is zero-sum, the column player will aim to choose 
+  
+    
+      
+        y
+      
+    
+    {\displaystyle y}
+  
+ to make this upper bound 
+  
+    
+      
+        v
+      
+    
+    {\displaystyle v}
+  
+ as small as possible. Hence:
+
+  
+    
+      
+        
+          max
+          
+            x
+            ∈
+            
+              
+                
+                  A
+                
+              
+              
+                1
+              
+            
+          
+        
+        x
+        M
+        
+          y
+          
+            
+              T
+            
+          
+        
+        =
+        
+          max
+          
+            i
+            ≤
+            m
+          
+        
+        (
+        M
+        
+          y
+          
+            
+              T
+            
+          
+        
+        
+          )
+          
+            i
+          
+        
+        =
+        min
+        
+          {
+          
+            v
+            ∈
+            
+              R
+            
+            ∣
+            M
+            
+              y
+              
+                
+                  T
+                
+              
+            
+            ≤
+            1
+            v
+          
+          }
+        
+      
+    
+    {\displaystyle \max _{x\in {\mathcal {A}}_{1}}xMy^{\mathsf {T}}=\max _{i\leq m}(My^{\mathsf {T}})_{i}=\min \left\{v\in \mathbb {R} \mid My^{\mathsf {T}}\leq 1v\right\}}
+  
+.
+The min-max strategy 
+  
+    
+      
+        y
+      
+    
+    {\displaystyle y}
+  
+ for the column player is the solution to the following optimisation problem (referred to as a linear program), where v is the min-max value of the game:
+
+  
+    
+      
+        
+          
+            
+              
+                
+                  
+                    min
+                    
+                      y
+                      ,
+                      v
+                    
+                  
+                
+              
+              
+                v
+              
+            
+            
+              
+                
+                  subject to
+                
+              
+              
+                M
+                
+                  y
+                  
+                    
+                      T
+                    
+                  
+                
+                ≤
+                1
+                v
+              
+            
+            
+              
+              
+                y
+                ∈
+                
+                  
+                    
+                      A
+                    
+                  
+                  
+                    2
+                  
+                
+              
+            
+          
+        
+      
+    
+    {\displaystyle {\begin{array}{ll}\displaystyle \min _{y,v}&v\\{\text{subject to}}&My^{\mathsf {T}}\leq 1v\\&y\in {\mathcal {A}}_{2}\end{array}}}
+  
+
+The corresponding max-min strategy 
+  
+    
+      
+        x
+      
+    
+    {\displaystyle x}
+  
+ for the row player solves the following linear program, where u is the max-min value of the game:
+
+  
+    
+      
+        
+          
+            
+              
+                
+                  
+                    max
+                    
+                      x
+                      ,
+                      u
+                    
+                  
+                
+              
+              
+                u
+              
+            
+            
+              
+                
+                  subject to
+                
+              
+              
+                x
+                M
+                ≥
+                1
+                u
+              
+            
+            
+              
+              
+                x
+                ∈
+                
+                  
+                    
+                      A
+                    
+                  
+                  
+                    1
+                  
+                
+              
+            
+          
+        
+      
+    
+    {\displaystyle {\begin{array}{ll}\displaystyle \max _{x,u}&u\\{\text{subject to}}&xM\geq 1u\\&x\in {\mathcal {A}}_{1}\end{array}}}
+  
+
+The minimax theorem states that, for all constant-sum games, if there exist:
+
+optimal values of u and the ''max-min'' strategy x,
+optimal values of v and the ''min-max'' strategy y,
+then, 
+  
+    
+      
+        u
+        =
+        v
+      
+    
+    {\displaystyle u=v}
+  
+. In less formal terms, it holds that optimal strategies exist that minimize potential losses in every constant-sum game.
+
+Formally stated, in an N-player normal form game, a Nash equilibrium is defined as a strategy profile 
+  
+    
+      
+        
+          
+            
+              s
+              ~
+            
+          
+        
+        =
+        (
+        
+          
+            
+              
+                s
+                ~
+              
+            
+          
+          
+            1
+          
+        
+        ,
+        
+          
+            
+              
+                s
+                ~
+              
+            
+          
+          
+            2
+          
+        
+        ,
+        …
+        ,
+        
+          
+            
+              
+                s
+                ~
+              
+            
+          
+          
+            N
+          
+        
+        )
+      
+    
+    {\displaystyle {\tilde {s}}=({\tilde {s}}_{1},{\tilde {s}}_{2},\ldots ,{\tilde {s}}_{N})}
+  
+ such that:
+
+  
+    
+      
+        
+          u
+          
+            i
+          
+        
+        (
+        
+          
+            
+              s
+              ~
+            
+          
+        
+        )
+        =
+        
+          max
+          
+            
+              
+                
+                  
+                    s
+                    ~
+                  
+                
+              
+              
+                i
+              
+            
+            ∈
+            Δ
+            (
+            
+              A
+              
+                i
+              
+            
+            )
+          
+        
+        
+          u
+          
+            i
+          
+        
+        (
+        
+          
+            
+              
+                s
+                ~
+              
+            
+          
+          
+            i
+          
+        
+        ,
+        
+          
+            
+              
+                s
+                ~
+              
+            
+          
+          
+            −
+            i
+          
+        
+        )
+        
+        ∀
+        i
+      
+    
+    {\displaystyle u_{i}({\tilde {s}})=\max _{{\tilde {s}}_{i}\in \Delta (A_{i})}u_{i}({\tilde {s}}_{i},{\tilde {s}}_{-i})\quad \forall i}
+  
+The Nash existence theorem states that every finite N-player normal form game has at least one Nash equilibrium in mixed strategies. At the same time, it is also known that every finite game with perfect information has a Nash equilibrium in pure strategies. 
+
+In other words, an act profile is a Nash equilibrium if each player is playing a best response to the joint play of the others, such that no player could have improved her payoff by changing her act while all others kept theirs the same. This is a weak stability concept; no player could gain from such a hypothetical unilateral deviation, but one might be just as well off. If, in addition, any unilateral deviation would have made the deviating player’s payoff strictly worse, it is a strict Nash equilibrium, which is relates to a strong sense of stability.
+
+Consider normal form games with a finite number of players, each with a finite number of possible acts. The vector of payoffs for the players is a function of the vector of acts for each player, the act profile. The set of players, the set of acts available for each player and the payoff function jointly define a normal-form game. A mixed strategy, on the other hand, allows each player to choose a probability distribution over pure strategies. In computing the payoff vector resulting from a vector of mixed strategies, a joint probability distribution is formed, such that payoffs are taken to be expected payoffs according to this joint probability distribution.
+A mixed Nash equilibrium is analogous to a pure strategy Nash equilibrium in a different game, where players choose between an infinite number of randomizing devices to determine their acts in the original game. There are no strict Nash equilibria in mixed strategies that are not pure strategies, because of the assumption that the act probabilities are independent when forming the joint probability distribution.
+
+In repeated games, it is possible to find a subgame perfect Nash equilibrium for subgames within the repeated game. If a game is infinitely repeated with relatively patient players, the folk theorem relates the payoff vector for each player to subgame perfect equilibria.
+
+Robert Aumann's correlated equilibrium concept generalises the Nash equilibrium further. Here, the joint probability distribution over player’s acts has no restrictions, and there is no assumption that the act probabilities are independent. Rather, in correlated equilibria, players may condition their behavior on some external random feature of their environment. This kind of solution is called correlated equilibrium because the actions of the players are correlated and not fully independent, even though communication or agreement might still be impossible. Correlated equilibrium solutions  thus explain the emergence of cooperation in repeated games, even when cooperation seems irrational. 
+In a correlated equilibria game, the external random feature can be analogised to a lottery run by a mediator (i.e. the joint probability distribution), who makes recommendations to each player conditional on the observed outcome of the lottery.  Players know the structure of the lottery and the joint probability of recommendations, and they can choose to either commit to the lottery or just take an action in the game. If for every action that will be recommended with positive probability, no unilateral deviation does better in the expectation conditional on this act, then the joint probability distribution is a correlated equilibrium.
+Correlated equilibria extend mixed Nash equilibria, and strict correlated equilibria extend strict Nash equilibria.
+
+A coarse correlated equilibrium further lifts the assumption of players calculating the expectation conditional on the action recommended to them. Analogously, the coarse-correlated equilibrium is like an arbitrator rather than a mediation, such that whereas the player chooses to accept or deviate from a mediator's recommendations, players in a coarse correlated equilibrium game decide whether to leave it to the arbitrator or just choose one of the acts.
+
+In cooperative game theory, a Von Neumann–Morgenstern solution, or stable set, is a set of outcomes that does not provide for effective mutual objections, while also containing at least one effective objection against any outcome that does not belong to the set. Von Neumann and Morgenstern's initial interpretation of vNM sets were as standards of behavior, although they can also be interpreted as sets of distinct feasible outcomes, over which games can be defined and played, or, for example, as maximal collections of mutually consistent modes of behaviour occupying niches of a given environment. More generally, vNM solutions can be applied to virtually any type of game, including non-cooperative games.
+Formally, using graph theory, a vNM set can be defined as follows. Let D denote a simple directed graph, 
+  
+    
+      
+        D
+        =
+        (
+        X
+        ,
+        Δ
+        )
+      
+    
+    {\displaystyle D=(X,\Delta )}
+  
+, where 
+  
+    
+      
+        X
+      
+    
+    {\displaystyle X}
+  
+ is a set and 
+  
+    
+      
+        Δ
+        ⊆
+        X
+        ×
+        X
+      
+    
+    {\displaystyle \Delta \subseteq X\times X}
+  
+. D is irreflexive if and only if 
+  
+    
+      
+        (
+        x
+        ,
+        x
+        )
+        ∉
+        Δ
+      
+    
+    {\displaystyle (x,x)\notin \Delta }
+  
+ for any 
+  
+    
+      
+        x
+        ∈
+        X
+      
+    
+    {\displaystyle x\in X}
+  
+. (In contrast, it is symmetric if and only if 
+  
+    
+      
+        (
+        y
+        ,
+        x
+        )
+        ∈
+        Δ
+      
+    
+    {\displaystyle (y,x)\in \Delta }
+  
+ whenever 
+  
+    
+      
+        (
+        x
+        ,
+        y
+        )
+        ∈
+        Δ
+      
+    
+    {\displaystyle (x,y)\in \Delta }
+  
+ for any 
+  
+    
+      
+        x
+        ,
+        y
+        ∈
+        X
+      
+    
+    {\displaystyle x,y\in X}
+  
+). A vNM-stable set of an irreflexive simple digraph, 
+  
+    
+      
+        (
+        X
+        ,
+        Δ
+        )
+      
+    
+    {\displaystyle (X,\Delta )}
+  
+, is a set 
+  
+    
+      
+        S
+        ⊆
+        X
+      
+    
+    {\displaystyle S\subseteq X}
+  
+, such that the following conditions hold: 
+
+internal stability, i.e., 
+  
+    
+      
+        [
+        (
+        x
+        ,
+        y
+        )
+        ∉
+        Δ
+        
+           for any 
+        
+        x
+        ,
+        y
+        ∈
+        S
+        ]
+      
+    
+    {\displaystyle [(x,y)\notin \Delta {\text{ for any }}x,y\in S]}
+  
+, and
+external stability, i.e., 
+  
+    
+      
+        [
+        
+          for any 
+        
+        z
+        ∈
+        X
+        ∖
+        S
+        ,
+        
+           there exists 
+        
+        x
+        ∈
+        S
+        
+           such that 
+        
+        (
+        x
+        ,
+        z
+        )
+        ∈
+        Δ
+        ]
+      
+    
+    {\displaystyle [{\text{for any }}z\in X\setminus S,{\text{ there exists }}x\in S{\text{ such that }}(x,z)\in \Delta ]}
+  
+.
+
+In a repeated game, the same base game (or stage game) is played over and over, a learning dynamic, such as fictitious play, is introduced. Under fictitious play, players will inductively form beliefs about the other's likely moves based on past repeated games, and they will correspondingly play the best response to the historical frequency of opponents' play. Fictitious play is modelled by gradient dynamics, that is, a gradual adjustment in direction of increasing utility. On a logarithmic time scale, in the long-run this is essentially the same thing as continuous adjustment in the direction of increasing utility.
+One strategy in repeated games is for players to use Bayesian inference using Laplace's rule of succession, such that others’ frequencies of past play are taken as a proxy for probabilities of next play. Via punishment strategies in the repeated game, equilibria may also be sustained that would not be equilibria at all in the stage game. For example, cooperation in the repeated prisoner’s dilemma can be sustained by tit-for-tat or grim trigger strategies. For the entire repeated game, the payoffs of strategies are computed by geometrically discounting the future and summing the infinite series.
+
+In bargaining, Nash argued, agents agree on the bargaining outcome that maximizes the product of the differences between their utilities at the disagreement point and the cooperative outcome. This Nash bargaining solution forms a natural agreement point for rational agents in conflict situations in which their bargaining process is unrestricted and free from ethical considerations. The Nash solution is further free of the need to consider interpersonal utility comparisons (i.e. comparisons of the welfare functions of different individuals), as it relies merely on comparisons of differences of intrapersonally determined utility ratios that, normatively, are considered to be uncontroversial.
+An alternative solution to the bargaining game is the egalitarian bargaining solution, which selects the bargaining outcome that maximizes the minimum payoffs (surplus utilities) among agents, granting to agents equal utility gains above the disagreement point. The solution is known as egalitarian as it is considered to lead to fairer distributional outcomes. At the same time, however, if agents do not find agreement on more specific criteria of merit and the precise weight of such criteria, then the agents’ gains will depend on their ability to transform resources into utility compared to the ability of other agents to do so. Thus, the egalitarian bargaining solution requires the use of interpersonal utility comparisons, holding that the agents’ utility functions must first be normalized in such a way that utility differences are interpersonally comparable.
+
+The ultimatum game is a game that has become a popular instrument of economic experiments. An early description is by Nobel laureate John Harsanyi in 1961.
+One player, the proposer, is endowed with a sum of money. The proposer is tasked with splitting it with another player, the responder (who knows what the total sum is). Once the proposer communicates his decision, the responder may accept it or reject it. If the responder accepts, the money is split per the proposal; if the responder rejects, both players receive nothing. Both players know in advance the consequences of the responder accepting or rejecting the offer. The game demonstrates how social acceptance, fairness, and generosity influence the players decisions.
+
+The Trust Game is an experiment designed to measure trust in economic decisions. It is also called "the investment game" and is designed to investigate trust and demonstrate its importance rather than "rationality" of self-interest. The game was designed by Berg Joyce, John Dickhaut and Kevin McCabe in 1995.
+In the game, one player (the investor) is given a sum of money and must decide how much of it to give to another player (the trustee). The amount given is then tripled by the experimenter. The trustee then decides how much of the tripled amount to return to the investor. If the trustee is completely self-interested, then they would return nothing. However, experiments have shown that this isn't the expected behavior of the trustee. The outcome instead suggests that people are willing to place trust, by risking some amount of money, in the belief that there will be reciprocity.
+
+The Cournot competition model involves players choosing quantity of a homogenous product to produce independently and simultaneously, where marginal cost can be different for each firm and the firm's payoff is profit. The production costs are public information and the firm aims to find their profit-maximizing quantity based on what they believe the other firm will produce and behave like monopolies. In this game firms want to produce at the monopoly quantity but there is a high incentive to deviate and produce more, which decreases the market-clearing price. For example, firms may be tempted to deviate from the monopoly quantity if there is a low monopoly quantity and high price, with the aim of increasing production to maximize profit. However this option does not provide the highest payoff, as a firm's ability to maximize profits depends on its market share and the elasticity of the market demand. The Cournot equilibrium is reached when each firm operates on their reaction function with no incentive to deviate, as they have the best response based on the other firms output. Within the game, firms reach the Nash equilibrium when the Cournot equilibrium is achieved.
+
+The Bertrand competition assumes homogenous products and a constant marginal cost and players choose the prices. The equilibrium of price competition is where the price is equal to marginal costs, assuming complete information about the competitors' costs. Therefore, the firms have an incentive to deviate from the equilibrium because a homogenous product with a lower price will gain all of the market share, known as a cost advantage.
+
+Under traditional game theory (TGT), games face significant limitations in real-world applications, owing to the inapplicability of non-bounded rationality, information asymmetries, and the dynamism of interactions. Originating as a field of mathematical biology, evolutionary game theory (EGT) adopts a more flexible and adaptive approach, aiming to capture factors such as the long-term dynamic adjustments of players and the time of evolution. Evolutionary models typically assume that agents rely on common background knowledge, shared history, focal points, signaling behavior, learning behavior, and/or imitation of past behaviors for equilibrium selection.
+
+Under EGT, the focus is less on equilibria that correspond to a notion of rationality, but instead equilibria that are maintained by evolutionary forces, such that players are not necessarily rational and strategies are accordingly not adjusted according to rational rules. The best-known equilibrium in biology is the evolutionarily stable strategy (ESS), which is equivalent to a Nash equilibrium in TGT. Another distinct concept in EGT is that of replicator dynamics, which model the speed of response to strategy-selection adjustments via differential equations. In general terms, the rate at which the frequency of strategy adoption changes, with respect to time, is directly proportional to the difference between the expected gain and population average gain. More formally, a general replicator equation can be expressed as follows:where 
+
+  
+    
+      
+        
+          x
+          
+            i
+          
+        
+      
+    
+    {\displaystyle x_{i}}
+  
+ is the probability or frequency of a particular pure strategy being adopted in a population,
+
+  
+    
+      
+        x
+        =
+        (
+        
+          x
+          
+            1
+          
+        
+        ,
+        …
+        ,
+        
+          x
+          
+            n
+          
+        
+        )
+      
+    
+    {\displaystyle x=(x_{1},\ldots ,x_{n})}
+  
+ represents the overall distribution of strategies in the population,
+
+  
+    
+      
+        
+          f
+          
+            i
+          
+        
+        (
+        x
+        )
+      
+    
+    {\displaystyle f_{i}(x)}
+  
+ is the fitness, or expected utility of strategy 
+  
+    
+      
+        i
+      
+    
+    {\displaystyle i}
+  
+,
+and 
+  
+    
+      
+        ϕ
+        (
+        x
+        )
+      
+    
+    {\displaystyle \phi (x)}
+  
+ is the average population fitness or utility (given by the weighted average of the fitness of the 
+  
+    
+      
+        n
+      
+    
+    {\displaystyle n}
+  
+ types in the population).
+In the social sciences, such models are also used to represent strategic adjustment by players who play a game many times within their lifetime and, consciously or unconsciously, occasionally adjust their strategies.
+
+Unlike those in traditional game theory, the payoffs for games in EGT are often interpreted as corresponding to fitness. In addition, offspring generally adopt their parents' "strategies" and parents who play more successful strategies have a greater number of offspring. 
+In population genetics, EGT provides an explanation for the stability of the approximate 1:1 sex ratios, in light of the evolutionary forces acting on players trying to maximize their number of grandchildren. In animal communication, EGT has also been used to model and explain communicative behaviours by way of signaling games and other communication games. Ethologists have also used the game of chicken to analyze fighting behavior and territoriality.
+
+In EGT, the Hawk-Dove game is a two-player game where the row and column players can choose to either exhibit hawk or dove phenotypes. When one player chooses Hawk and the other Dove, Hawk gets the resource, while Dove retreats before injury. When two Hawks meet, they engage in an escalating fight, seriously risking injury. When two Doves meet, they share the resource.
+
+Frequency-dependent selection thus occurs because the expected payoff to a Hawk or a Dove depends on the frequency of Hawks and Doves in the population. A Hawk in a population of Doves does well, but a Hawk in a population of Hawks does poorly. A population of all Doves is unstable to invasion by Hawks, and similarly a population of all Hawks is unstable to invasion by Doves. These two possible equilibria are therefore unstable, and the ESS is a mixed strategy Nash equilibrium, consisting of a mixed population of both Hawks and Doves, the proportion of which is determined by assuming that the expected payoff to a Hawk in a mixed population of Hawks and Doves is the same as the expected payoff to a Dove, such that:
+  
+    
+      
+        p
+        =
+        
+          
+            
+              
+                E
+                
+                  H
+                  D
+                
+              
+              −
+              
+                E
+                
+                  D
+                  D
+                
+              
+            
+            
+              
+                (
+                
+                  
+                    E
+                    
+                      H
+                      D
+                    
+                  
+                  −
+                  
+                    E
+                    
+                      D
+                      D
+                    
+                  
+                
+                )
+              
+              +
+              
+                (
+                
+                  
+                    E
+                    
+                      D
+                      H
+                    
+                  
+                  −
+                  
+                    E
+                    
+                      H
+                      H
+                    
+                  
+                
+                )
+              
+            
+          
+        
+      
+    
+    {\displaystyle p={\frac {E_{HD}-E_{DD}}{\left(E_{HD}-E_{DD}\right)+\left(E_{DH}-E_{HH}\right)}}}
+  
+, where p is the frequency of hawks.
+
+Biological altruism is the situation in which an organism appears to act in a way that benefits other organisms, in particular, those of a group, but is detrimental to itself. EGT explains this phenomena by way of kin selection; Hamilton's rule states that c < b × r where the cost c to the altruist must be less than the benefit b to the recipient multiplied by the coefficient of relatedness r. That is to say, because closely related organisms share many of the same alleles, incidences of altruism increase where the altruistic player can ensure those alleles of its close relative are passed on through survival of the latter's offspring. This behaviour occurs even where it requires the altruist to forgo the option of having offspring itself, because the same number of alleles are passed on.
+
+The Stackelberg game, also known as the leader-follower game, is a dynamic form of game where players of differing power participate in a sequential order over time, assuming that all players have perfect information, but they do not know the next moves of other participants. In a Stackelberg game, leaders (e.g., producers with high market power) make the first move, and followers (e.g. consumers) select actions based on the leaders’ decisions.
+
+Mean field game theory is the study of strategic decision making in very large populations of small interacting agents. This class of problems was considered in the economics literature by Boyan Jovanovic and Robert W. Rosenthal, in the engineering literature by Peter E. Caines, and by mathematicians Pierre-Louis Lions and Jean-Michel Lasry.
+
+Differential games such as the continuous pursuit and evasion game are continuous games where the evolution of the players' state variables is governed by differential equations. The problem of finding an optimal strategy in a differential game is closely related to the optimal control theory. In particular, there are two types of strategies: the open-loop strategies are found using the Pontryagin maximum principle while the closed-loop strategies are found using Bellman's Dynamic Programming method.
+A particular case of differential games are the games with a random time horizon. In such games, the terminal time is a random variable with a given probability distribution function. Therefore, the players maximize the mathematical expectation of the cost function. It was shown that the modified optimization problem can be reformulated as a discounted differential game over an infinite time interval.
+
+Game theory is widely applied in the computational and formal sciences, including in artificial intelligence (e.g. autonomous agents, machine learning, robotics), computer networking (e.g. blockchain, cybersecurity), and the digital economy (e.g. advertising auctions, surge pricing, matching markets). It is used as a basis for the modelling, analysis and development of communication protocols, interactive computations, and multi-agent systems.
+
+Algorithmic game theory (AGT), and within it algorithmic mechanism design, combine computational algorithm design and analysis of complex systems with classical methods of game theory. AGT is widely used in the development of online games, e-commerce markets, computational auctions, peer-to-peer systems, securities markets, and information markets.
+Game theory has played a role in online algorithms; in particular, the k-server problem, which has in the past been referred to as games with moving costs and request-answer games. Yao's principle is a game-theoretic technique for proving lower bounds on the computational complexity of randomized algorithms, especially online algorithms.
+
+Games in which the difficulty of finding an optimal strategy stems from the multiplicity of possible moves are called combinatorial games. Examples include chess, shogi, and Go. Games that involve imperfect information may also have a strong combinatorial character, for instance backgammon. There is no unified theory addressing combinatorial elements in games. There are, however, mathematical tools that can solve some particular problems and answer some general questions.
+Games of perfect information have been studied in combinatorial game theory, which has developed novel representations, e.g. surreal numbers, as well as combinatorial and algebraic (and sometimes non-constructive) proof methods to solve games of certain types, including "loopy" games that may result in infinitely long sequences of moves. These methods address games with higher combinatorial complexity than those usually considered in traditional (or "economic") game theory. A typical game that has been solved this way is Hex. A related field of study, drawing from computational complexity theory, is game complexity, which is concerned with estimating the computational difficulty of finding optimal strategies.
+Research in artificial intelligence has addressed both perfect and imperfect information games that have very complex combinatorial structures (like chess, go, or backgammon) for which no provable optimal strategies have been found. The practical solutions involve computational heuristics, like alpha–beta pruning or use of artificial neural networks trained by reinforcement learning, which make games more tractable in computing practice.
+
+Individual decision problems with stochastic outcomes are sometimes considered "one-player games". They may be modeled using similar tools within the related disciplines of decision theory, operations research, and areas of artificial intelligence, particularly AI planning (with uncertainty) and multi-agent system. Although these fields may have different motivators, the mathematics involved are substantially the same, e.g. using Markov decision processes (MDP).
+Stochastic outcomes can also be modeled in terms of game theory by adding a randomly acting player who makes "chance moves" ("moves by nature"). This player is not typically considered a third player in what is otherwise a two-player game, but merely serves to provide a roll of the dice where required by the game.
+For some problems, different approaches to modeling stochastic outcomes may lead to different solutions. For example, the difference in approach between MDPs and the minimax solution is that the latter considers the worst-case over a set of adversarial moves, rather than reasoning in expectation about these moves given a fixed probability distribution. The minimax approach may be advantageous where stochastic models of uncertainty are not available, but may also be overestimating extremely unlikely (but costly) events, dramatically swaying the strategy in such scenarios if it is assumed that an adversary can force such an event to happen. (See Black swan theory for more discussion on this kind of modeling issue, particularly as it relates to predicting and limiting losses in investment banking.)
+General models that include all elements of stochastic outcomes, adversaries, and partial or noisy observability (of moves by other players) have also been studied. The "gold standard" is considered to be partially observable stochastic game (POSG), but few realistic problems are computationally feasible in POSG representation.
+
+A prototypical paper on game theory in economics begins by presenting a game that is an abstraction of a particular economic situation. One or more solution concepts are chosen, and the author demonstrates which strategy sets in the presented game are equilibria of the appropriate type. Economists and business professors suggest two primary uses (noted above): descriptive and prescriptive.
+
+The application of game theory to political science is focused in the overlapping areas of fair division, political economy, public choice, law and economics, war bargaining, strategic warfare, positive political theory, democratic peace theory, and social choice theory. In each of these areas, researchers have developed game-theoretic models in which the players are often voters, states, special interest groups, and politicians.
+Early examples of game theory applied to political science are provided by Anthony Downs. In his 1957 book An Economic Theory of Democracy, he applies the Hotelling firm location model to the political process. In the Downsian model, political candidates commit to ideologies on a one-dimensional policy space. Downs first shows how the political candidates will converge to the ideology preferred by the median voter if voters are fully informed, but then argues that voters choose to remain rationally ignorant which allows for candidate divergence. Game theory was applied in 1962 to the Cuban Missile Crisis during the presidency of John F. Kennedy.
+
+Game theory has been put to several uses in philosophy. Responding to two papers by W.V.O. Quine (1960, 1967), Lewis (1969) used game theory to develop a philosophical account of convention. In so doing, he provided the first analysis of common knowledge and employed it in analyzing play in coordination games. In addition, he first suggested that one can understand meaning in terms of signaling games. This later suggestion has been pursued by several philosophers since Lewis. Following Lewis (1969) game-theoretic account of conventions, Edna Ullmann-Margalit (1977) and Bicchieri (2006) have developed theories of social norms that define them as Nash equilibria that result from transforming a mixed-motive game into a coordination game.
+Game theory has also challenged philosophers to think in terms of interactive epistemology: what it means for a collective to have common beliefs or knowledge, and what are the consequences of this knowledge for the social outcomes resulting from the interactions of agents. Philosophers who have worked in this area include Bicchieri (1989, 1993), Skyrms (1990), and Stalnaker (1999).
+The synthesis of game theory with ethics was championed by R. B. Braithwaite. The hope was that rigorous mathematical analysis of game theory might help formalize the more imprecise philosophical discussions. However, this expectation was only materialized to a limited extent.
+In ethics, some (most notably David Gauthier, Gregory Kavka, and Jean Hampton)  authors have attempted to pursue Thomas Hobbes' project of deriving morality from self-interest. Since games like the prisoner's dilemma present an apparent conflict between morality and self-interest, explaining why cooperation is required by self-interest is an important component of this project. This general strategy is a component of the general social contract view in political philosophy (for examples, see Gauthier (1986) and Kavka (1986)).
+Other authors have attempted to use evolutionary game theory in order to explain the emergence of human attitudes about morality and corresponding animal behaviors. These authors look at several games including the prisoner's dilemma, stag hunt, and the Nash bargaining game as providing an explanation for the emergence of attitudes about morality (see, e.g., Skyrms (1996, 2004) and Sober and Wilson (1998)).
+Several logical theories have a basis in game semantics.
+
+Since the decision to take a vaccine for a particular disease is often made by individuals, who may consider a range of factors and parameters in making this decision (such as the incidence and prevalence of the disease, perceived and real risks associated with contracting the disease, mortality rate, perceived and real risks associated with vaccination, and financial cost of vaccination), game theory has been used to model and predict vaccination uptake in a society.
+
+Discussions on the mathematics of games began long before the rise of modern, mathematical game theory. Game-theoretic arguments in philosophy can be found as far back as Plato. Cardano wrote on games of chance in Liber de ludo aleae (Book on Games of Chance), written around 1564 but published posthumously in 1663. Influenced by the work of Fermat and Pascal on the problem of points, Huygens developed the concept of expectation on reasoning about the structure of games of chance, publishing his gambling calculus in De ratiociniis in ludo aleæ (On Reasoning in Games of Chance) in 1657.
+In 1713, a letter attributed to Charles Waldegrave, an active Jacobite and uncle to British diplomat James Waldegrave, analyzed a game called "le her". Waldegrave provided a minimax mixed strategy solution to a two-person version of the card game, and the problem is now known as the Waldegrave problem.
+In 1838, Antoine Augustin Cournot provided a model of competition in oligopolies. Though he did not refer to it as such, he presented a solution that is the Nash equilibrium of the game in his Recherches sur les principes mathématiques de la théorie des richesses (Researches into the Mathematical Principles of the Theory of Wealth). In 1883, Joseph Bertrand critiqued Cournot's model as unrealistic, providing an alternative model of price competition which would later be formalized by Francis Ysidro Edgeworth.
+In 1913, Ernst Zermelo published Über eine Anwendung der Mengenlehre auf die Theorie des Schachspiels (On an Application of Set Theory to the Theory of the Game of Chess), which proved that the optimal chess strategy is strictly determined. In his 1938 book Applications aux Jeux de Hasard and earlier notes, Émile Borel proved a minimax theorem for two-person zero-sum matrix games only when the pay-off matrix is symmetric and provided a solution to a non-trivial infinite game (known in English as Blotto game). Borel conjectured the non-existence of mixed-strategy equilibria in finite two-person zero-sum games, a conjecture that was proved false by von Neumann.
+
+The work of American mathematician John von Neumann established game theory as its own independent field in the early-to-mid 20th century, with von Neumann publishing his paper On the Theory of Games of Strategy (1928), which proved the minimax theorem. Von Neumann's original proof used Brouwer's fixed-point theorem on continuous mappings into compact convex sets, which became a standard method in game theory and mathematical economics. Von Neumann's work in game theory culminated in his 1944 book Theory of Games and Economic Behavior, co-authored with German political scientist and economist Oskar Morgenstern. 
+This foundational work provided the first comprehensive formal model for situations in which each participant’s outcomes depend not only on their own choices but also on the choices of others, also containing the method for finding mutually consistent solutions for two-person zero-sum games. Their subsequent work focused primarily on cooperative game theory, which analyzes optimal strategies for groups of individuals, presuming that they can enforce agreements between them about proper strategies. 
+Building upon the work of von Neumann and Morgenstern, the Princeton mathematician John Forbes Nash Jr in 1950 formalised a solution concept (later known as the Nash equilibrium) for non-cooperative games that were not necessarily zero-sum contests. In his 1950 paper, Nash also proved that every finite non-cooperative game had at least one Nash equilibrium solution. The generality of the Nash equilibrium allowed it to be applied to scenarios such as oligopoly pricing and environmental agreements. Further, Nash’s bargaining model offered a formal framework for negotiations.
+
+Game theory experienced a flurry of activity in the 1950s, during which the concepts of the core, the extensive form game, fictitious play, repeated games, and the Shapley value were developed. The 1950s also saw the first applications of game theory to philosophy and political science. The first mathematical discussion of the prisoner's dilemma appeared, and an experiment was undertaken by mathematicians Merrill M. Flood and Melvin Dresher, as part of the RAND Corporation's investigations into game theory. RAND pursued the studies because of possible applications to global nuclear strategy.
+In 1994, the first Nobel Prize in economics given to game theorists was awarded to the mathematician John Nash, the philosopher John Harsanyi, and the economist Reinhard Selten for “for their pioneering analysis of equilibria in the theory of non-cooperative games”. Harsanyi had applied Bayesian inference to game theory in formulating Bayesian games, whereas Selten had introduced the solution concept of subgame perfect equilibria, which further refined the Nash equilibrium, and the trembling hand perfection, among other contributions. In 1996, the economist William Vickrey, who had applied game theory to the field of auction theory, was announced as a half-winner of the Nobel for "fundamental contributions to the economic theory of incentives under asymmetric information”, but he died before he could receive it.
+In 2005, the American economist Thomas Schelling and Israeli mathematician Robert Aumann were awarded the Nobel “for having enhanced our understanding of conflict and cooperation through game-theory analysis”. Schelling had showed how strategic behavior and coordination can emerge even from simple individual choices, particularly through focal points and dynamic models of conflict and cooperation. Aumann introduced correlated equilibrium and repeated games, showing how cooperation can persist over time even among self-interested actors.
+In 2007 the legally-trained Polish-American economist Leonid Hurwicz, and the American mathematicians Eric Maskin and Roger Myerson, won the Nobel “for having laid the foundations of mechanism design theory”. Hurwicz was the first to develop mechanism design theory, which shifted attention from analyzing outcomes of given rules to designing rules that yield socially desirable outcomes even under self-interest.
+In 2012, Alvin E. Roth and Lloyd S. Shapley were warded the Prize “for the theory of stable allocations and the practice of market design”. In particular,Shapley's application of game theory in market design led to the concept of the market game.
+Recent laureates include Jean Tirole (2014), and Paul Milgrom and Robert B. Wilson (2020). 
+
+John Maynard Smith applied game-theoretic concepts to evolutionary biology, defining evolutionarily stable strategies that cannot be displaced once established in a population. The 1990s also brought computational advancements and refined mechanism design, enabling large-scale applications in telecommunications, market platforms, and auctions. In the 2000s, behavioral game theory incorporated insights from psychology, exploring bounded rationality, fairness, and reciprocity, challenging the assumption of perfect rationality.
+From the 2010s onward, game theory has become deeply embedded in the digital economy and artificial intelligence. Today, its applications span almost every domain. In economics and markets, it shapes auction design, antitrust policy, and matching markets. In politics and international relations, it informs voting systems, coalition-building, treaty design, and deterrence strategies. In military and security, it guides defense planning, cybersecurity, and counterterrorism resource allocation. In biology and ecology, it models evolutionary dynamics and cooperation among species. In business and management, it informs supply chain negotiations, contract structures, and competitive strategy.

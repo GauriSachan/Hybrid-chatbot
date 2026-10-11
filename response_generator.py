@@ -107,7 +107,7 @@ class ResponseGenerator:
     def __init__(
         self,
         chat_fn: ChatFn,
-        min_score: float = 0.30,
+        min_score: float = 0.40,  # raised from 0.30: real eval showed an off-topic question scoring 0.35
         min_score_by_origin: Optional[dict] = None,   # per-source override of min_score
         max_context_chars: int = 12_000,
         history_turns: int = 6,
@@ -306,6 +306,21 @@ def groq_chat_fn(model: Optional[str] = None, max_tokens: int = 1024) -> ChatFn:
     model = model or os.getenv("GROQ_MODEL", "llama-3.3-70b-versatile")
     return openai_chat_fn(model=model, max_tokens=max_tokens,
                           base_url="https://api.groq.com/openai/v1", api_key_env="GROQ_API_KEY")
+
+
+def github_models_chat_fn(model: Optional[str] = None, max_tokens: int = 1024) -> ChatFn:
+    """FREE, no credit card: uses your GitHub account. Create a fine-grained personal access
+    token with the 'Models: Read-only' permission at
+    https://github.com/settings/personal-access-tokens and set GITHUB_TOKEN.
+    (If you have the gh CLI installed and logged in, `gh auth token` prints a usable token too.)
+    GitHub Models is OpenAI-compatible, so this reuses openai_chat_fn with its base URL.
+    Model names use "{publisher}/{model}" form, e.g. "openai/gpt-4o-mini", "meta/llama-3.3-70b-instruct".
+    Override with env var GITHUB_MODEL -- browse the full list at https://github.com/marketplace/models.
+    Note: free-tier rate/token limits are tighter than Groq/Gemini's free tiers."""
+    import os
+    model = model or os.getenv("GITHUB_MODEL", "openai/gpt-4o-mini")
+    return openai_chat_fn(model=model, max_tokens=max_tokens,
+                          base_url="https://models.github.ai/inference", api_key_env="GITHUB_TOKEN")
 
 
 def gemini_chat_fn(model: Optional[str] = None, max_tokens: int = 1024) -> ChatFn:

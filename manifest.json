@@ -142,5 +142,485 @@
   "Nobel_Prize.txt": {
     "title": "Nobel Prize",
     "url": "https://en.wikipedia.org/wiki/Nobel_Prize"
+  },
+  "Newton_s_laws_of_motion.txt": {
+    "title": "Newton's laws of motion",
+    "url": "https://en.wikipedia.org/wiki/Newton%27s_laws_of_motion"
+  },
+  "Thermodynamics.txt": {
+    "title": "Thermodynamics",
+    "url": "https://en.wikipedia.org/wiki/Thermodynamics"
+  },
+  "Quantum_mechanics.txt": {
+    "title": "Quantum mechanics",
+    "url": "https://en.wikipedia.org/wiki/Quantum_mechanics"
+  },
+  "Theory_of_relativity.txt": {
+    "title": "Theory of relativity",
+    "url": "https://en.wikipedia.org/wiki/Theory_of_relativity"
+  },
+  "Electromagnetism.txt": {
+    "title": "Electromagnetism",
+    "url": "https://en.wikipedia.org/wiki/Electromagnetism"
+  },
+  "Optics.txt": {
+    "title": "Optics",
+    "url": "https://en.wikipedia.org/wiki/Optics"
+  },
+  "Nuclear_physics.txt": {
+    "title": "Nuclear physics",
+    "url": "https://en.wikipedia.org/wiki/Nuclear_physics"
+  },
+  "Particle_physics.txt": {
+    "title": "Particle physics",
+    "url": "https://en.wikipedia.org/wiki/Particle_physics"
+  },
+  "Standard_Model.txt": {
+    "title": "Standard Model",
+    "url": "https://en.wikipedia.org/wiki/Standard_Model"
+  },
+  "String_theory.txt": {
+    "title": "String theory",
+    "url": "https://en.wikipedia.org/wiki/String_theory"
+  },
+  "Entropy.txt": {
+    "title": "Entropy",
+    "url": "https://en.wikipedia.org/wiki/Entropy"
+  },
+  "Wave_particle_duality.txt": {
+    "title": "Wave–particle duality",
+    "url": "https://en.wikipedia.org/wiki/Wave%E2%80%93particle_duality"
+  },
+  "Periodic_table.txt": {
+    "title": "Periodic table",
+    "url": "https://en.wikipedia.org/wiki/Periodic_table"
+  },
+  "Chemical_bond.txt": {
+    "title": "Chemical bond",
+    "url": "https://en.wikipedia.org/wiki/Chemical_bond"
+  },
+  "Organic_chemistry.txt": {
+    "title": "Organic chemistry",
+    "url": "https://en.wikipedia.org/wiki/Organic_chemistry"
+  },
+  "Inorganic_chemistry.txt": {
+    "title": "Inorganic chemistry",
+    "url": "https://en.wikipedia.org/wiki/Inorganic_chemistry"
+  },
+  "Biochemistry.txt": {
+    "title": "Biochemistry",
+    "url": "https://en.wikipedia.org/wiki/Biochemistry"
+  },
+  "Catalysis.txt": {
+    "title": "Catalysis",
+    "url": "https://en.wikipedia.org/wiki/Catalysis"
+  },
+  "Polymer.txt": {
+    "title": "Polymer",
+    "url": "https://en.wikipedia.org/wiki/Polymer"
+  },
+  "Acid_base_reaction.txt": {
+    "title": "Acid–base reaction",
+    "url": "https://en.wikipedia.org/wiki/Acid%E2%80%93base_reaction"
+  },
+  "Genetics.txt": {
+    "title": "Genetics",
+    "url": "https://en.wikipedia.org/wiki/Genetics"
+  },
+  "Cell_biology.txt": {
+    "title": "Cell (biology)",
+    "url": "https://en.wikipedia.org/wiki/Cell_%28biology%29"
+  },
+  "Evolution.txt": {
+    "title": "Evolution",
+    "url": "https://en.wikipedia.org/wiki/Evolution"
+  },
+  "RNA.txt": {
+    "title": "RNA",
+    "url": "https://en.wikipedia.org/wiki/RNA"
+  },
+  "Protein.txt": {
+    "title": "Protein",
+    "url": "https://en.wikipedia.org/wiki/Protein"
+  },
+  "Ecosystem.txt": {
+    "title": "Ecosystem",
+    "url": "https://en.wikipedia.org/wiki/Ecosystem"
+  },
+  "Immune_system.txt": {
+    "title": "Immune system",
+    "url": "https://en.wikipedia.org/wiki/Immune_system"
+  },
+  "Plate_tectonics.txt": {
+    "title": "Plate tectonics",
+    "url": "https://en.wikipedia.org/wiki/Plate_tectonics"
+  },
+  "Astronomy.txt": {
+    "title": "Astronomy",
+    "url": "https://en.wikipedia.org/wiki/Astronomy"
+  },
+  "Galaxy.txt": {
+    "title": "Galaxy",
+    "url": "https://en.wikipedia.org/wiki/Galaxy"
+  },
+  "Meteorology.txt": {
+    "title": "Meteorology",
+    "url": "https://en.wikipedia.org/wiki/Meteorology"
+  },
+  "Oceanography.txt": {
+    "title": "Oceanography",
+    "url": "https://en.wikipedia.org/wiki/Oceanography"
+  },
+  "Calculus.txt": {
+    "title": "Calculus",
+    "url": "https://en.wikipedia.org/wiki/Calculus"
+  },
+  "Linear_algebra.txt": {
+    "title": "Linear algebra",
+    "url": "https://en.wikipedia.org/wiki/Linear_algebra"
+  },
+  "Probability_theory.txt": {
+    "title": "Probability theory",
+    "url": "https://en.wikipedia.org/wiki/Probability_theory"
+  },
+  "Statistics.txt": {
+    "title": "Statistics",
+    "url": "https://en.wikipedia.org/wiki/Statistics"
+  },
+  "Differential_equation.txt": {
+    "title": "Differential equation",
+    "url": "https://en.wikipedia.org/wiki/Differential_equation"
+  },
+  "Number_theory.txt": {
+    "title": "Number theory",
+    "url": "https://en.wikipedia.org/wiki/Number_theory"
+  },
+  "Graph_theory.txt": {
+    "title": "Graph theory",
+    "url": "https://en.wikipedia.org/wiki/Graph_theory"
+  },
+  "Trigonometry.txt": {
+    "title": "Trigonometry",
+    "url": "https://en.wikipedia.org/wiki/Trigonometry"
+  },
+  "Geometry.txt": {
+    "title": "Geometry",
+    "url": "https://en.wikipedia.org/wiki/Geometry"
+  },
+  "Topology.txt": {
+    "title": "Topology",
+    "url": "https://en.wikipedia.org/wiki/Topology"
+  },
+  "Mathematical_logic.txt": {
+    "title": "Mathematical logic",
+    "url": "https://en.wikipedia.org/wiki/Mathematical_logic"
+  },
+  "Set_theory.txt": {
+    "title": "Set theory",
+    "url": "https://en.wikipedia.org/wiki/Set_theory"
+  },
+  "Game_theory.txt": {
+    "title": "Game theory",
+    "url": "https://en.wikipedia.org/wiki/Game_theory"
+  },
+  "Mathematical_optimization.txt": {
+    "title": "Mathematical optimization",
+    "url": "https://en.wikipedia.org/wiki/Mathematical_optimization"
+  },
+  "Fourier_transform.txt": {
+    "title": "Fourier transform",
+    "url": "https://en.wikipedia.org/wiki/Fourier_transform"
+  },
+  "Matrix_mathematics.txt": {
+    "title": "Matrix (mathematics)",
+    "url": "https://en.wikipedia.org/wiki/Matrix_%28mathematics%29"
+  },
+  "Complex_number.txt": {
+    "title": "Complex number",
+    "url": "https://en.wikipedia.org/wiki/Complex_number"
+  },
+  "Civil_engineering.txt": {
+    "title": "Civil engineering",
+    "url": "https://en.wikipedia.org/wiki/Civil_engineering"
+  },
+  "Mechanical_engineering.txt": {
+    "title": "Mechanical engineering",
+    "url": "https://en.wikipedia.org/wiki/Mechanical_engineering"
+  },
+  "Electrical_engineering.txt": {
+    "title": "Electrical engineering",
+    "url": "https://en.wikipedia.org/wiki/Electrical_engineering"
+  },
+  "Chemical_engineering.txt": {
+    "title": "Chemical engineering",
+    "url": "https://en.wikipedia.org/wiki/Chemical_engineering"
+  },
+  "Aerospace_engineering.txt": {
+    "title": "Aerospace engineering",
+    "url": "https://en.wikipedia.org/wiki/Aerospace_engineering"
+  },
+  "Structural_engineering.txt": {
+    "title": "Structural engineering",
+    "url": "https://en.wikipedia.org/wiki/Structural_engineering"
+  },
+  "Control_theory.txt": {
+    "title": "Control theory",
+    "url": "https://en.wikipedia.org/wiki/Control_theory"
+  },
+  "Signal_processing.txt": {
+    "title": "Signal processing",
+    "url": "https://en.wikipedia.org/wiki/Signal_processing"
+  },
+  "Materials_science.txt": {
+    "title": "Materials science",
+    "url": "https://en.wikipedia.org/wiki/Materials_science"
+  },
+  "Fluid_dynamics.txt": {
+    "title": "Fluid dynamics",
+    "url": "https://en.wikipedia.org/wiki/Fluid_dynamics"
+  },
+  "Heat_transfer.txt": {
+    "title": "Heat transfer",
+    "url": "https://en.wikipedia.org/wiki/Heat_transfer"
+  },
+  "Renewable_energy.txt": {
+    "title": "Renewable energy",
+    "url": "https://en.wikipedia.org/wiki/Renewable_energy"
+  },
+  "Nuclear_power.txt": {
+    "title": "Nuclear power",
+    "url": "https://en.wikipedia.org/wiki/Nuclear_power"
+  },
+  "Internal_combustion_engine.txt": {
+    "title": "Internal combustion engine",
+    "url": "https://en.wikipedia.org/wiki/Internal_combustion_engine"
+  },
+  "Semiconductor.txt": {
+    "title": "Semiconductor",
+    "url": "https://en.wikipedia.org/wiki/Semiconductor"
+  },
+  "Integrated_circuit.txt": {
+    "title": "Integrated circuit",
+    "url": "https://en.wikipedia.org/wiki/Integrated_circuit"
+  },
+  "Economics.txt": {
+    "title": "Economics",
+    "url": "https://en.wikipedia.org/wiki/Economics"
+  },
+  "Microeconomics.txt": {
+    "title": "Microeconomics",
+    "url": "https://en.wikipedia.org/wiki/Microeconomics"
+  },
+  "Macroeconomics.txt": {
+    "title": "Macroeconomics",
+    "url": "https://en.wikipedia.org/wiki/Macroeconomics"
+  },
+  "Supply_and_demand.txt": {
+    "title": "Supply and demand",
+    "url": "https://en.wikipedia.org/wiki/Supply_and_demand"
+  },
+  "Accounting.txt": {
+    "title": "Accounting",
+    "url": "https://en.wikipedia.org/wiki/Accounting"
+  },
+  "Marketing.txt": {
+    "title": "Marketing",
+    "url": "https://en.wikipedia.org/wiki/Marketing"
+  },
+  "Stock_market.txt": {
+    "title": "Stock market",
+    "url": "https://en.wikipedia.org/wiki/Stock_market"
+  },
+  "Inflation.txt": {
+    "title": "Inflation",
+    "url": "https://en.wikipedia.org/wiki/Inflation"
+  },
+  "Gross_domestic_product.txt": {
+    "title": "Gross domestic product",
+    "url": "https://en.wikipedia.org/wiki/Gross_domestic_product"
+  },
+  "International_trade.txt": {
+    "title": "International trade",
+    "url": "https://en.wikipedia.org/wiki/International_trade"
+  },
+  "Bank.txt": {
+    "title": "Bank",
+    "url": "https://en.wikipedia.org/wiki/Bank"
+  },
+  "Entrepreneurship.txt": {
+    "title": "Entrepreneurship",
+    "url": "https://en.wikipedia.org/wiki/Entrepreneurship"
+  },
+  "Supply_chain_management.txt": {
+    "title": "Supply chain management",
+    "url": "https://en.wikipedia.org/wiki/Supply_chain_management"
+  },
+  "Corporate_finance.txt": {
+    "title": "Corporate finance",
+    "url": "https://en.wikipedia.org/wiki/Corporate_finance"
+  },
+  "Tax.txt": {
+    "title": "Tax",
+    "url": "https://en.wikipedia.org/wiki/Tax"
+  },
+  "Economic_growth.txt": {
+    "title": "Economic growth",
+    "url": "https://en.wikipedia.org/wiki/Economic_growth"
+  },
+  "Monopoly.txt": {
+    "title": "Monopoly",
+    "url": "https://en.wikipedia.org/wiki/Monopoly"
+  },
+  "Deep_learning.txt": {
+    "title": "Deep learning",
+    "url": "https://en.wikipedia.org/wiki/Deep_learning"
+  },
+  "Neural_network.txt": {
+    "title": "Neural network",
+    "url": "https://en.wikipedia.org/wiki/Neural_network"
+  },
+  "Natural_language_processing.txt": {
+    "title": "Natural language processing",
+    "url": "https://en.wikipedia.org/wiki/Natural_language_processing"
+  },
+  "Computer_vision.txt": {
+    "title": "Computer vision",
+    "url": "https://en.wikipedia.org/wiki/Computer_vision"
+  },
+  "Reinforcement_learning.txt": {
+    "title": "Reinforcement learning",
+    "url": "https://en.wikipedia.org/wiki/Reinforcement_learning"
+  },
+  "Large_language_model.txt": {
+    "title": "Large language model",
+    "url": "https://en.wikipedia.org/wiki/Large_language_model"
+  },
+  "Generative_adversarial_network.txt": {
+    "title": "Generative adversarial network",
+    "url": "https://en.wikipedia.org/wiki/Generative_adversarial_network"
+  },
+  "Transformer_deep_learning.txt": {
+    "title": "Transformer (deep learning)",
+    "url": "https://en.wikipedia.org/wiki/Transformer_%28deep_learning%29"
+  },
+  "Supervised_learning.txt": {
+    "title": "Supervised learning",
+    "url": "https://en.wikipedia.org/wiki/Supervised_learning"
+  },
+  "Unsupervised_learning.txt": {
+    "title": "Unsupervised learning",
+    "url": "https://en.wikipedia.org/wiki/Unsupervised_learning"
+  },
+  "Expert_system.txt": {
+    "title": "Expert system",
+    "url": "https://en.wikipedia.org/wiki/Expert_system"
+  },
+  "Turing_test.txt": {
+    "title": "Turing test",
+    "url": "https://en.wikipedia.org/wiki/Turing_test"
+  },
+  "Robotics.txt": {
+    "title": "Robotics",
+    "url": "https://en.wikipedia.org/wiki/Robotics"
+  },
+  "Robot.txt": {
+    "title": "Robot",
+    "url": "https://en.wikipedia.org/wiki/Robot"
+  },
+  "Autonomous_robot.txt": {
+    "title": "Autonomous robot",
+    "url": "https://en.wikipedia.org/wiki/Autonomous_robot"
+  },
+  "Industrial_robot.txt": {
+    "title": "Industrial robot",
+    "url": "https://en.wikipedia.org/wiki/Industrial_robot"
+  },
+  "Humanoid_robot.txt": {
+    "title": "Humanoid robot",
+    "url": "https://en.wikipedia.org/wiki/Humanoid_robot"
+  },
+  "Swarm_robotics.txt": {
+    "title": "Swarm robotics",
+    "url": "https://en.wikipedia.org/wiki/Swarm_robotics"
+  },
+  "Sensor.txt": {
+    "title": "Sensor",
+    "url": "https://en.wikipedia.org/wiki/Sensor"
+  },
+  "Actuator.txt": {
+    "title": "Actuator",
+    "url": "https://en.wikipedia.org/wiki/Actuator"
+  },
+  "Robot_kinematics.txt": {
+    "title": "Robot kinematics",
+    "url": "https://en.wikipedia.org/wiki/Robot_kinematics"
+  },
+  "Self-driving_car.txt": {
+    "title": "Self-driving car",
+    "url": "https://en.wikipedia.org/wiki/Self-driving_car"
+  },
+  "Unmanned_aerial_vehicle.txt": {
+    "title": "Unmanned aerial vehicle",
+    "url": "https://en.wikipedia.org/wiki/Unmanned_aerial_vehicle"
+  },
+  "Internet_of_things.txt": {
+    "title": "Internet of things",
+    "url": "https://en.wikipedia.org/wiki/Internet_of_things"
+  },
+  "Computer_science.txt": {
+    "title": "Computer science",
+    "url": "https://en.wikipedia.org/wiki/Computer_science"
+  },
+  "Algorithm.txt": {
+    "title": "Algorithm",
+    "url": "https://en.wikipedia.org/wiki/Algorithm"
+  },
+  "Data_structure.txt": {
+    "title": "Data structure",
+    "url": "https://en.wikipedia.org/wiki/Data_structure"
+  },
+  "Database.txt": {
+    "title": "Database",
+    "url": "https://en.wikipedia.org/wiki/Database"
+  },
+  "Operating_system.txt": {
+    "title": "Operating system",
+    "url": "https://en.wikipedia.org/wiki/Operating_system"
+  },
+  "Computer_network.txt": {
+    "title": "Computer network",
+    "url": "https://en.wikipedia.org/wiki/Computer_network"
+  },
+  "Cryptography.txt": {
+    "title": "Cryptography",
+    "url": "https://en.wikipedia.org/wiki/Cryptography"
+  },
+  "Software_engineering.txt": {
+    "title": "Software engineering",
+    "url": "https://en.wikipedia.org/wiki/Software_engineering"
+  },
+  "Computer_architecture.txt": {
+    "title": "Computer architecture",
+    "url": "https://en.wikipedia.org/wiki/Computer_architecture"
+  },
+  "Compiler.txt": {
+    "title": "Compiler",
+    "url": "https://en.wikipedia.org/wiki/Compiler"
+  },
+  "Distributed_computing.txt": {
+    "title": "Distributed computing",
+    "url": "https://en.wikipedia.org/wiki/Distributed_computing"
+  },
+  "Cloud_computing.txt": {
+    "title": "Cloud computing",
+    "url": "https://en.wikipedia.org/wiki/Cloud_computing"
+  },
+  "Computer_security.txt": {
+    "title": "Computer security",
+    "url": "https://en.wikipedia.org/wiki/Computer_security"
+  },
+  "Quantum_computing.txt": {
+    "title": "Quantum computing",
+    "url": "https://en.wikipedia.org/wiki/Quantum_computing"
   }
 }
