@@ -622,5 +622,17 @@
   "Quantum_computing.txt": {
     "title": "Quantum computing",
     "url": "https://en.wikipedia.org/wiki/Quantum_computing"
+  },
+  "Machine_Learning_Basics_GeeksforGeeks.txt": {
+    "title": "Machine Learning Basics (GeeksforGeeks)",
+    "url": "https://www.geeksforgeeks.org/machine-learning/"
+  },
+  "Inflation_What_It_Is_and_How_to_Control_Inflation_Rates.txt": {
+    "title": "Inflation: What It Is and How to Control Inflation Rates",
+    "url": "https://www.investopedia.com/terms/i/inflation.asp"
+  },
+  "1706.pdf": {
+    "title": "1706",
+    "url": "https://arxiv.org/pdf/1706.03762"
   }
 }

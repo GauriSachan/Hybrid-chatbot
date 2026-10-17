@@ -1,0 +1,3 @@
+https://www.geeksforgeeks.org/machine-learning/ | Machine Learning Basics (GeeksforGeeks)
+https://www.investopedia.com/terms/i/inflation.asp
+https://arxiv.org/pdf/1706.03762

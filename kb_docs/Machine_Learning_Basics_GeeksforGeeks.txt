@@ -1,0 +1,248 @@
+Earn Google Badge
+Introduction
+Types
+ML Pipeline
+Applications
+ML with Python
+Numpy
+Pandas
+Data Preprocessing
+EDA
+Feature Engineering
+Dimensionality Reduction
+Feature Selection
+Supervised Learning
+Linear Regression
+Logistic Regression
+Decision Tree
+Random Forest
+KNN
+SVM
+Naive Bayes
+Unsupervised Learning
+K means Clustering
+Hierarchical Clustering
+DBSCAN Clustering
+Apriori Algorithm
+FP Growth Algorithm
+ECLAT Algorithm
+PCA
+Evaluation Metrics
+Regularization
+Cross Validation
+Hyperparameter Tuning
+Underfitting and Overfitting
+Bias and Variance
+Reinforcement Learning
+Semi-Supervised Learning
+Self-Supervised Learning
+Ensemble Learning
+Interview Questions
+ML Projects
+Data Science 360 Course
+AI Engg Course
+Data Science 360 Course
+Explore
+Machine Learning (ML) is a branch of Artificial Intelligence that enables computers to learn from data and make predictions or decisions without being explicitly programmed for every task.
+Helps identify patterns, automate tasks and improve predictions using historical data.
+For example, an e-commerce business can analyze customer and sales data to understand buying behavior, while a healthcare organization can analyze patient data to identify health trends and improve patient care.
+Module 1: ML Fundamentals
+This section introduces the core concepts of machine learning and explains how ML relates to AI and Deep Learning.
+Introduction
+AI vs ML vs Deep Learning
+ML workflow
+Module 2: Python for ML
+Python is widely used in machine learning because of its simple syntax and powerful libraries.
+Introduction
+Variables
+Data Types
+Operators
+Conditional Statements
+Loops
+Functions
+Lists
+Dictionary
+Libraries:
+NumPy
+,
+Pandas
+,
+Matplotlib
+,
+Seaborn
+,
+Scikit-learn
+Module 3: Mathematics for ML
+A basic understanding of mathematics helps explain how machine learning algorithms learn from data and optimize their performance.
+Probability
+Basic probability
+Conditional Probability
+Bayes' Theorem
+Probability distributions
+Statistics
+Descriptive Statistics
+Inferential Statistics
+Skewness and Kurtosis
+Correlation:
+Pearson
+,
+Spearman
+Linear Algebra & Calculus
+Vectors
+Matrices
+Dot Product
+linear equations
+Differentiation
+Gradient Descent
+Module 4: Data Preparation
+Real-world data is often incomplete or inconsistent and needs to be prepared before modeling. This section covers data cleaning, splitting, scaling and feature preparation techniques.
+Introduction
+Data Cleaning
+Missing Values
+Outliers
+Splitting Data
+Feature Selection
+Feature Scaling
+Feature Engineering
+Feature Extraction
+Imbalanced Data
+Module 5: Exploratory Data Analysis
+EDA helps understand data by finding patterns, relationships and unusual observations. This section covers analysis and visualization techniques for exploring datasets.
+Introduction
+Univariate, Bivariate and Multivariate
+Data Visualization
+Correlation Analysis
+Advance EDA
+Module 6: Supervised Learning
+Supervised Learning
+uses labeled data to make predictions on new data. This section covers common algorithms for classification and regression tasks.
+Classification
+Regression
+1. Linear Regression
+Introduction to Linear Regression
+Multiple Linear Regression
+2. Logistic Regression
+Understanding Logistic Regression
+Cost function in Logistic Regression
+3.
+Decision Trees
+Decision Tree in Machine Learning
+Types of Decision tree algorithms
+Decision Tree Regression (Implementation)
+Decision Tree Classification (Implementation)
+4. k-Nearest Neighbors (k-NN)
+Introduction to KNN
+Decision Boundaries in K-Nearest Neighbors (KNN)
+Introduction to Naive Bayes
+Gaussian Naive Bayes
+Multinomial Naive Bayes
+Bernoulli Naive Bayes
+6.
+Support Vector Machines (SVM)
+Understanding SVMs
+Non-Linear SVM
+7. Ensemble Learning
+EnsembleI learning
+Bagging & Boosting
+AdaBoost
+Gradient Boosting
+XGBoost
+8. Random Forest (Bagging Algorithm)
+Introduction
+Random Forest Classifier
+Random Forest Regression
+Module 7: Model Evaluation & Optimization
+Evaluating a model helps determine how well it performs and whether it can generalize to new data. This section covers techniques for assessing and improving model performance.
+Confusion Matrix
+Precision, Recall
+&
+F1-Score
+AUC-ROC Curve
+Regression Metrics
+Cross-validation
+Overfitting & Underfitting
+Bias-Variance Tradeoff
+Regularization
+Hyperparameter Tuning
+Model Selection
+Module 8: Unsupervised learning
+Unsupervised Learning
+helps uncover useful patterns and relationships in unlabeled data. This section introduces the main techniques used to analyze and organize such data.
+Clustering
+Association Rule Mining
+Dimensionality Reduction
+1. Clustering
+Centroid-based Methods:
+K-Means clustering
+Elbow Method
+K-Means++ clustering
+Connectivity based methods:
+Hierarchical clustering
+Agglomerative Clustering
+Density Based methods:
+DBSCAN
+OPTICS
+Distribution-based Methods
+:
+Gaussian mixture models
+Expectation-Maximization Algorithm
+2. Dimensionality Reduction
+Principal Component Analysis (PCA)
+t-distributed Stochastic Neighbor Embedding (t-SNE)
+Non-negative Matrix Factorization (NMF)
+Independent Component Analysis (ICA)
+Isomap
+3. Anomaly Detection & Association Rule Mining
+Apriori algorithm
+FP-Growth (Frequent Pattern-Growth)
+Anomaly Detection
+Module 9: Reinforcement Learning
+Reinforcement Learning
+is a type of machine learning in which an agent interacts with an environment and learns to make decisions by receiving rewards or penalties for its actions.
+1.
+Fundamental Methods
+Markov decision processes (MDPs)
+Bellman equation
+Value iteration algorithm
+2. Model-Free Methods
+Q-Learning
+SARSA
+3. Policy-Based Methods
+Reinforce Algorithm
+Actor-Critic Algorithm
+Asynchronous Advantage Actor-Critic (A3C)
+Module 10: Semi-Supervised & Self-Supervised Learning
+It uses a mix of labeled and unlabeled data making it helpful when labeling data is costly or it is very limited.
+Semi-Supervised Learning
+Semi Supervised Classification
+Self-Training
+Self-Supervised Learning
+Module 11: Time Series & Forecasting
+Forecasting models analyze past data to predict future trends, commonly used for time series problems like sales, demand or stock prices.
+Introduction
+Seasonality
+Stationarity
+Exponential Smoothing
+ARIMA
+SARIMA
+Module 12: Deployment & MLOps
+The trained ML model must be integrated into an application or service to make its predictions accessible.
+Machine learning deployment
+ML Applications:
+Streamlit
+,
+Gradio
+ML APIs:
+Flask
+,
+FastAPI
+MLOps
+CI/CD in MLOps
+End-to-End MLOps
+Module 13: Projects & Practice
+Projects help reinforce machine learning concepts by applying them to practical problems. This section provides projects and interview resources for hands-on practice.
+Machine Learning Projects
+Interview Questions and Answers
+Coding Interview Questions
+After machine learning and have hands on experience in it we can start with deep learning from here:
+Deep Learning Tutorial
