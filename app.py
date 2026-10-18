@@ -27,7 +27,7 @@ CLEAR_DOCS_URL_TMPL = API_URL.rsplit("/", 1)[0] + "/session/{sid}/docs/clear"
 #   False -> sends a real POST request to API_URL.
 MOCK_MODE = False
 
-REQUEST_TIMEOUT_SECONDS = 120       # How long to wait for the backend
+REQUEST_TIMEOUT_SECONDS = 180       # How long to wait for the backend
 MOCK_DELAY_SECONDS = 0.4            # Fake delay in mock mode (looks realistic)
 SEND_HISTORY_TO_BACKEND = False     # True -> also send {"history": [...]} in the request
 
