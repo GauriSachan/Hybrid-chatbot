@@ -1,0 +1,29 @@
+# Environment / secrets
+.env
+.venv/
+venv/
+*.key
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.Python
+
+# Knowledge base data (large, regeneratable via ingestion.py)
+kb_data/
+kb_docs/*.txt
+kb_docs/*.pdf
+kb_docs/*.docx
+
+# Evaluation output / scratch results
+results*.json
+
+# Streamlit
+.streamlit/
+
+# OS / editor junk
+.DS_Store
+Thumbs.db
+.vscode/
+*.log
